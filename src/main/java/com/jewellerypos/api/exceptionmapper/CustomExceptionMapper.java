@@ -5,10 +5,14 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+import com.jewellerypos.api.error.BillAlreadyCancelledException;
+import com.jewellerypos.api.error.BillnoNotValidException;
+import com.jewellerypos.api.error.DealerNotFoundException;
 import com.jewellerypos.api.error.ErrorModel;
 import com.jewellerypos.api.error.JPOSErrorConstant;
 import com.jewellerypos.api.error.MetalNotFoundException;
 import com.jewellerypos.api.error.ProductAlreadyExistException;
+import com.jewellerypos.api.error.ProductNotFoundException;
 import com.jewellerypos.api.error.RateNotUpdatedException;
 
 
@@ -44,6 +48,26 @@ public class CustomExceptionMapper implements ExceptionMapper<Exception>{
         }
 		else if (exception instanceof ProductAlreadyExistException) {
             em.setCode(JPOSErrorConstant.PRODUCTNAME_ALREADY_EXIST_ERRORCODE);
+            em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
+            em.setStatus("Bad Request");
+        }
+		else if (exception instanceof ProductNotFoundException) {
+            em.setCode(JPOSErrorConstant.PRODUCT_NOT_FOUND_ERRORCODE);
+            em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
+            em.setStatus("Bad Request");
+        }
+		else if (exception instanceof DealerNotFoundException) {
+            em.setCode(JPOSErrorConstant.DEALER_NOT_FOUND_ERRORCODE);
+            em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
+            em.setStatus("Bad Request");
+        }
+		else if (exception instanceof BillnoNotValidException) {
+            em.setCode(JPOSErrorConstant.BILLNO_NOT_VALID_ERRORCODE);
+            em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
+            em.setStatus("Bad Request");
+        }
+		else if (exception instanceof BillAlreadyCancelledException) {
+            em.setCode(JPOSErrorConstant.BILL_ALREADY_CANCELED_ERRORCODE);
             em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
             em.setStatus("Bad Request");
         }

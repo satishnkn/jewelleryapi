@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jewellerypos.api.model.Product;
 import com.jewellerypos.api.request.ProductRequest;
+import com.jewellerypos.api.response.PageProductResposne;
 import com.jewellerypos.api.response.ProductRepsonse;
 import com.jewellerypos.api.service.ProductService;
 
@@ -52,7 +53,7 @@ public class ProductController {
     @Path("/v1.0/product/{productCode}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public ProductRepsonse updateProduct(@PathParam("productCode") String productCode,@Valid ProductRequest proReq ){
+    public ProductRepsonse updateProduct(@PathParam("productCode") long productCode,@Valid ProductRequest proReq ){
         return productService.updateProduct(productCode,proReq);
         
     }
@@ -61,8 +62,17 @@ public class ProductController {
     @Path("/v1.0/product")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public List<ProductRepsonse> getAllProduct(@QueryParam("page") int page,@QueryParam("size") int size){
+    public PageProductResposne getAllProduct(@QueryParam("page") int page,@QueryParam("size") int size){
         return productService.getAllProduct(page,size);
+        
+    }
+    
+    @GET
+    @Path("/v1.0/product/{productCode}")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public ProductRepsonse getProductByCode(@PathParam("productCode") long productCode){
+        return productService.getProductByCode(productCode);
         
     }
     

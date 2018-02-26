@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -23,7 +24,9 @@ import com.jewellerypos.api.model.Metal;
 import com.jewellerypos.api.model.Product;
 import com.jewellerypos.api.repository.MetalRepository;
 import com.jewellerypos.api.repository.ProductRepository;
-import com.jewellerypos.api.request.ProductRequest;import com.jewellerypos.api.response.ProductRepsonse;
+import com.jewellerypos.api.request.ProductRequest;
+import com.jewellerypos.api.response.PageProductResposne;
+import com.jewellerypos.api.response.ProductRepsonse;
 import com.jewellerypos.api.service.ProductService;
 
 @Service
@@ -55,6 +58,13 @@ public class ProductServiceImpl implements ProductService {
             return presp;
         }
     };
+    
+    public static <K,V,Q extends K> List<V> transformData( final List<Q> input, final java.util.function.Function<K,V> tfunc ) {
+        if( null == input ) {
+            return null;
+        }
+        return input.parallelStream().map(tfunc).collect( Collectors.toList() );
+    }
    
     @Override
     public ProductRepsonse createProduct(ProductRequest proReq) {
@@ -84,12 +94,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductRepsonse updateProduct(String productCode, ProductRequest proReq) {
+    public ProductRepsonse updateProduct(long productCode, ProductRequest proReq) {
         ProductRepsonse response = null;
         
         Product product = productRepository.findByProductCode(productCode);
         if(product == null)
-            throw new ProductNotFoundException(ErrorScenario.PRODUCT_NOT_FOUND, productCode);
+            throw new ProductNotFoundException(ErrorScenario.PRODUCT_NOT_FOUND, String.valueOf(productCode));
         Product update = new Product();
         if(proReq.getProductName() != null){
             if(!proReq.getProductName().equals(product.getProductName())){
@@ -121,22 +131,41 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductRepsonse> getAllProduct(int page,int size) {
-        List<ProductRepsonse> response = new ArrayList<>();
+    public PageProductResposne getAllProduct(int page,int size) {
+    	PageProductResposne response = new PageProductResposne();
         
-        List<Product> productLst = null;
-        if(size != 0)
-            productLst = productRepository.findAll();
+        if(size == 0){
+        	List<Product> productLst = productRepository.findAll();
+            response.setProductLst(transformData(productLst , resp));
+            response.setNumber(0);
+            response.setNumberOfElements(productLst.size());
+            response.setSize(0);
+            response.setTotalElements(productLst.size());
+            response.setTotalPages(1);
+        }
         else{
-        
             PageRequest pageRequest = new PageRequest(page, size,
                 new Sort(Sort.Direction.DESC, "productName"));
             Page<Product> pagewiseProduct =  productRepository.findAll(pageRequest);
-            productLst = pagewiseProduct.getContent();
+            response.setProductLst(transformData(pagewiseProduct.getContent(), resp)); 
+            response.setNumber(pagewiseProduct.getNumber());
+            response.setNumberOfElements(pagewiseProduct.getNumberOfElements());
+            response.setTotalElements(pagewiseProduct.getTotalElements());
+            response.setTotalPages(pagewiseProduct.getTotalPages());
+            response.setSize(pagewiseProduct.getSize()); 
+            
         }
         
-        return null;
+        return response;
     }
+
+	@Override
+	public ProductRepsonse getProductByCode(long productCode) {
+		Product product = productRepository.findByProductCode(productCode);
+		if(product == null )
+			throw new ProductNotFoundException(ErrorScenario.PRODUCT_NOT_FOUND,String.valueOf(productCode));
+		return resp.apply(product);
+	}
     
     
     
