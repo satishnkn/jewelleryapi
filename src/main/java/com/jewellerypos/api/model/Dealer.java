@@ -50,6 +50,13 @@ public class Dealer implements Serializable{
 	@Column(name = "DEALER_REGISTRATION_NO")
 	private String dealerRegistrationNo;
 	
+	@Column(name = "ADDRESS")
+	private String address;
+	
+	@NotNull
+	@Column( name = "MOBILE_NO")
+	private String mobileNo;
+	
 	@Column(name = "OPERATOR_CODE")
     private long operatorCode;
     

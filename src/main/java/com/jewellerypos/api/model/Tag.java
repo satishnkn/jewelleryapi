@@ -6,18 +6,32 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "TAG")
 public class Tag implements Serializable {
 
 	/**
@@ -30,6 +44,7 @@ public class Tag implements Serializable {
 	@Column(name = "TAG_NO")
 	private long tagNo;
 	
+	@NotNull
 	@Column(name = "TAG_ID")
 	private String tagId;
 			
@@ -37,7 +52,7 @@ public class Tag implements Serializable {
 	@Column(name = "TAG_PLUS_DATE")
 	private LocalDateTime tagPlusDate;
 		
-	
+	@NotBlank
 	@Column(name = "PRODUCT_CODE")
 	private long productCode;
 	
@@ -56,6 +71,9 @@ public class Tag implements Serializable {
 	@Column(name = "PURCHASE_RATE")
 	private double purchaseRate;
 	
+	@Column(name = "PURCHASE_NO")
+	private long purchaseNo;
+	
 	@Column(name = "WASTAGE")
 	private double wastage;
 	
@@ -73,8 +91,8 @@ public class Tag implements Serializable {
 	
 	@OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "purchase")
-	private Set<PurchaseAddon> purchaseAddon;
+            mappedBy = "tag")
+	private Set<TagAddon> tagAddon;
 	
 	@Column(name = "SALE_BILL_NO")
 	private String saleBillNo;

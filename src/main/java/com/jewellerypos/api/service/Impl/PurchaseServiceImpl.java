@@ -94,7 +94,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 			p.setUpdatedOn(LocalDateTime.now());
 			purchaseresp.add(p);
 		}
-			response.setPurchaseList(purchaseresp);
+		List<Purchase> savedPurchase = purchaseRepository.save(purchaseresp);
+			response.setPurchaseList(savedPurchase);
 			response.setPurchaseBillno(purchaseBillno);
 			response.setPurchaseBillDate(purchaseDate);
 		return response;

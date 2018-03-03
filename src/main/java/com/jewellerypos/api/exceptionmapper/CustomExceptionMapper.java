@@ -7,6 +7,7 @@ import javax.ws.rs.ext.Provider;
 
 import com.jewellerypos.api.error.BillAlreadyCancelledException;
 import com.jewellerypos.api.error.BillnoNotValidException;
+import com.jewellerypos.api.error.DealerAlreadyExistException;
 import com.jewellerypos.api.error.DealerNotFoundException;
 import com.jewellerypos.api.error.ErrorModel;
 import com.jewellerypos.api.error.JPOSErrorConstant;
@@ -58,6 +59,11 @@ public class CustomExceptionMapper implements ExceptionMapper<Exception>{
         }
 		else if (exception instanceof DealerNotFoundException) {
             em.setCode(JPOSErrorConstant.DEALER_NOT_FOUND_ERRORCODE);
+            em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
+            em.setStatus("Bad Request");
+        }
+		else if (exception instanceof DealerAlreadyExistException) {
+            em.setCode(JPOSErrorConstant.DEALER_ALREADY_EXIST_ERRORCODE);
             em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
             em.setStatus("Bad Request");
         }

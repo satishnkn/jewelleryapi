@@ -104,6 +104,9 @@ public class Purchase implements Serializable{
 	@Column(name = "BILL_REFNO")
 	private String billRefNo;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
 	@Column(name = "BILL_REFDATE")
 	private LocalDateTime billRefDate;
 	

@@ -9,8 +9,10 @@ public enum ErrorScenario {
     PRODUCT_ALREADY_EXIST(JPOSErrorConstant.PRODUCTNAME_ALREADY_EXIST_ERRORCODE,"Product {0} already exist.","Product {0} already exist."),
     PRODUCT_NOT_FOUND(JPOSErrorConstant.PRODUCT_NOT_FOUND_ERRORCODE,"ProductCode {0} not found.","ProductCode {0} not found."),
 	DEALER_NOT_FOUND(JPOSErrorConstant.DEALER_NOT_FOUND_ERRORCODE,"DealerId {0} not found.","DealerId {0} not found."),
+	DEALER_ALREADY_EXIST(JPOSErrorConstant.DEALER_ALREADY_EXIST_ERRORCODE,"Dealer with mobileno {0} already exist.","Dealer with mobileno {0} already exist."),
 	BILLNO_NOT_VALID(JPOSErrorConstant.BILLNO_NOT_VALID_ERRORCODE,"{0} not valid.","{0} not valid."),
-	BILL_ALREADY_CANCELED(JPOSErrorConstant.BILL_ALREADY_CANCELED_ERRORCODE,"{0} was already cancelled.","{0} was already cancelled.")
+	BILL_ALREADY_CANCELED(JPOSErrorConstant.BILL_ALREADY_CANCELED_ERRORCODE,"{0} was already cancelled.","{0} was already cancelled."),
+	TAG_NOT_FOUND(JPOSErrorConstant.TAG_NOT_FOUND_ERRORCODE,"{0} was not found.","{0} was not found.")
 	;
     
     public final String code;

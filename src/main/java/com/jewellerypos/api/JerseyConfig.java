@@ -9,8 +9,11 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.jewellerypos.api.exceptionmapper.CustomExceptionMapper;
 import com.jewellerypos.api.exceptionmapper.CustomValidationExceptionMapper;
 import com.jewellerypos.api.exceptionmapper.NotFoundExceptionMapper;
+import com.jewellerypos.api.restcontroller.DealerController;
 import com.jewellerypos.api.restcontroller.MetalRateHistoryController;
 import com.jewellerypos.api.restcontroller.ProductController;
+import com.jewellerypos.api.restcontroller.PurchaseController;
+import com.jewellerypos.api.restcontroller.TagController;
 
 
 @Configuration
@@ -19,6 +22,9 @@ public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
         register(MetalRateHistoryController.class);
         register(ProductController.class);
+        register(DealerController.class);
+        register(PurchaseController.class);
+        register(TagController.class);
         register(CustomExceptionMapper.class);
         register(CustomValidationExceptionMapper.class);
         register(NotFoundExceptionMapper.class);

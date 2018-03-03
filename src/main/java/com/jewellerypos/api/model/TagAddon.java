@@ -24,24 +24,23 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name = "PURCHASE_ADDON")
-public class PurchaseAddon implements Serializable {
-	
+@Table(name = "TAG_ADDON")
+public class TagAddon implements Serializable{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8393131210112505122L;
-
-
+	private static final long serialVersionUID = -2396908143671675616L;
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PURCHASE_ADDON_ID")
-	private long purchaseAddonId;
+	@Column(name = "TAG_ADDON_ID")
+	private long tagAddonId;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PURCHASE_NO", nullable = false)
-	private Purchase purchase;
+    @JoinColumn(name = "TAG_NO", nullable = false)
+	private Tag tag;
 	
 	@Column(name = "ADDON_PRODUCT_CODE")
 	private long addonProductCode;
@@ -64,16 +63,5 @@ public class PurchaseAddon implements Serializable {
 	@Column(name = "ADDON_MAKING_CHARGE")
 	private double addonMakingCharge;
 	
-	@Column(name = "ADDON_RATE")
-	private double addonrate;
-	
-	@Column(name = "ADDON_AMOUNT")
-	private double addonAmount;
-	
-	/*@OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "purchase")
-	private Set<PurchaseAddon> purchaseAddon;
-	*/
 
 }

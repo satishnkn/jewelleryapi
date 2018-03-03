@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.jewellerypos.api.error.DealerAlreadyExistException;
 import com.jewellerypos.api.error.DealerNotFoundException;
 import com.jewellerypos.api.error.ErrorScenario;
 import com.jewellerypos.api.model.Dealer;
@@ -36,12 +37,18 @@ public class DealerServiceImpl implements DealerService {
 	@Override
 	public Dealer createDealer(DealerRequest dealerReq) {
 		Dealer crDealer = new Dealer();
+		
 		Dealer dealer = new Dealer();
+		dealer = dealerRepository.findByMobileNo(dealerReq.getMobileNo());
+		if(dealer != null)
+			throw new DealerAlreadyExistException(ErrorScenario.DEALER_ALREADY_EXIST, dealerReq.getMobileNo());
 		dealer.setDealerName(dealerReq.getDealerName());
 		dealer.setDealerCompany(dealerReq.getDealerCompany());
 		dealer.setDealerTinNo(dealerReq.getDealerTinNo());
 		dealer.setDealerGstNo(dealerReq.getDealerGstNo());
 		dealer.setDealerRegistrationNo(dealerReq.getDealerRegistrationNo());
+		dealer.setAddress(dealerReq.getAddress());
+		dealer.setMobileNo(dealerReq.getMobileNo());
 		dealer.setOperatorCode(dealerReq.getOperatorCode());
 		dealer.setCreatedOn(LocalDateTime.now());
 		dealer.setUpdatedOn(LocalDateTime.now());
@@ -57,11 +64,21 @@ public class DealerServiceImpl implements DealerService {
 		Dealer exist = dealerRepository.findByDealerId(dealerId);
 		if(exist == null)
 			 throw new DealerNotFoundException(ErrorScenario.DEALER_NOT_FOUND, String.valueOf(dealerId));
-		exist.setDealerName(dealerReq.getDealerName());
-		exist.setDealerCompany(dealerReq.getDealerCompany());
-		exist.setDealerTinNo(dealerReq.getDealerTinNo());
-		exist.setDealerGstNo(dealerReq.getDealerGstNo());
-		exist.setDealerRegistrationNo(dealerReq.getDealerRegistrationNo());
+		if(!dealerReq.getMobileNo().equals(exist.getMobileNo()) && dealerReq.getMobileNo() != null){
+			Dealer uniquedealer = dealerRepository.findByMobileNo(dealerReq.getMobileNo());
+		    if(uniquedealer != null)
+		    	throw new DealerAlreadyExistException(ErrorScenario.DEALER_ALREADY_EXIST, dealerReq.getMobileNo());
+		}
+		if(dealerReq.getDealerName() != null)
+			exist.setDealerName(dealerReq.getDealerName());
+		if(dealerReq.getDealerCompany() != null)
+			exist.setDealerCompany(dealerReq.getDealerCompany());
+		if(dealerReq.getDealerTinNo() != null)
+			exist.setDealerTinNo(dealerReq.getDealerTinNo());
+		if(dealerReq.getDealerGstNo() != null)
+			exist.setDealerGstNo(dealerReq.getDealerGstNo());
+		if(dealerReq.getDealerRegistrationNo() != null)
+			exist.setDealerRegistrationNo(dealerReq.getDealerRegistrationNo());
 		exist.setOperatorCode(dealerReq.getOperatorCode());
 		exist.setUpdatedOn(LocalDateTime.now());
 		updated = dealerRepository.save(exist);

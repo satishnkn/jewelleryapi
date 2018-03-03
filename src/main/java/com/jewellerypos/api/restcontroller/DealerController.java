@@ -63,7 +63,7 @@ public class DealerController {
     }
 	
 	@GET   
-    @Path("/v1.0/dealer{dealerId}")
+    @Path("/v1.0/dealer/{dealerId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public Dealer getDealerById(@PathParam("dealerId") long dealerId){

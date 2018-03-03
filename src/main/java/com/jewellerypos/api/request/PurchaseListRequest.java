@@ -2,6 +2,8 @@ package com.jewellerypos.api.request;
 
 import java.util.Set;
 
+import javax.validation.constraints.NotNull;
+
 import com.jewellerypos.api.model.PurchaseAddon;
 
 import lombok.Getter;
@@ -11,6 +13,7 @@ import lombok.Setter;
 @Setter
 public class PurchaseListRequest {
 	
+	@NotNull
 	private long productCode;
 	
 	private int piece;

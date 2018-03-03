@@ -12,9 +12,12 @@ public class JPOSErrorConstant {
     public static final String PRODUCT_NOT_FOUND_ERRORCODE="JPOS007";
     
     public static final String DEALER_NOT_FOUND_ERRORCODE="JPOS008";
+    public static final String DEALER_ALREADY_EXIST_ERRORCODE="JPOS012";
     
     public static final String BILLNO_NOT_VALID_ERRORCODE = "JPOS009";
     public static final String BILL_ALREADY_CANCELED_ERRORCODE = "JPOS010";
+    
+    public static final String TAG_NOT_FOUND_ERRORCODE = "JPOS011";
     
     
 
