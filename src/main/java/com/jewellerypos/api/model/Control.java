@@ -25,5 +25,8 @@ public class Control implements Serializable {
 	
 	@Column(name = "PURCHASE_NO")
 	private long purchaseBillno;
+	
+	@Column(name = "SALE_NO")
+	private long saleBillNo;
 
 }

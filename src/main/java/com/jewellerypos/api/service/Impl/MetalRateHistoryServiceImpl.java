@@ -1,6 +1,7 @@
 package com.jewellerypos.api.service.Impl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -60,6 +61,20 @@ public class MetalRateHistoryServiceImpl implements MetalRateHistoryService {
         else
             throw new RateNotUpdatedException(ErrorScenario.RATE_NOT_UPDATED);
     }
+
+
+	@Override
+	public List<Metal> getAllMetalRate() {
+		List<Metal> metalrates = metalRepository.findAll();
+		return metalrates;
+	}
+
+
+	@Override
+	public Metal createMetal(Metal metal) {
+		Metal m = metalRepository.save(metal);
+		return m;
+	}
     
 
 }

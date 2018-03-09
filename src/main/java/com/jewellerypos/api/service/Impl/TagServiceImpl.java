@@ -1,12 +1,17 @@
 package com.jewellerypos.api.service.Impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.jewellerypos.api.error.ErrorScenario;
@@ -59,6 +64,22 @@ public class TagServiceImpl implements TagService{
 			response.setStatus(true);
 		}
 		return response;
+	}
+
+	@Override
+	public Page<Tag> getAllTags(int page, int size) {
+		 PageRequest pageRequest = new PageRequest(page, size,
+	                new Sort(Sort.Direction.DESC, "tagPlusDate"));
+		Page<Tag> tagview = tagRepository.findAll(pageRequest);
+		return tagview;
+	}
+
+	@Override
+	public Tag getTagById(String tagId) {
+		Tag tag = tagRepository.findByTagId(tagId);
+		if(tag == null)
+			throw new TagNotFoundException(ErrorScenario.TAG_NOT_FOUND, tagId);
+		return tag;
 	}
 	
 	
