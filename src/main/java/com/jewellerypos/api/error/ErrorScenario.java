@@ -12,7 +12,8 @@ public enum ErrorScenario {
 	DEALER_ALREADY_EXIST(JPOSErrorConstant.DEALER_ALREADY_EXIST_ERRORCODE,"Dealer with mobileno {0} already exist.","Dealer with mobileno {0} already exist."),
 	BILLNO_NOT_VALID(JPOSErrorConstant.BILLNO_NOT_VALID_ERRORCODE,"{0} not valid.","{0} not valid."),
 	BILL_ALREADY_CANCELED(JPOSErrorConstant.BILL_ALREADY_CANCELED_ERRORCODE,"{0} was already cancelled.","{0} was already cancelled."),
-	TAG_NOT_FOUND(JPOSErrorConstant.TAG_NOT_FOUND_ERRORCODE,"{0} was not found.","{0} was not found.")
+	TAG_NOT_FOUND(JPOSErrorConstant.TAG_NOT_FOUND_ERRORCODE,"{0} is not found.","{0} is not found."),
+	CHIT_GROUP_ID_NOT_FOUND(JPOSErrorConstant.CHIT_GROUP_ID_NOT_FOUND,"Chitgroup id {0} is not found","Chitgroup id {0} is not found")
 	;
     
     public final String code;

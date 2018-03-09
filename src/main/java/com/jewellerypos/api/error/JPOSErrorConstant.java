@@ -19,6 +19,8 @@ public class JPOSErrorConstant {
     
     public static final String TAG_NOT_FOUND_ERRORCODE = "JPOS011";
     
+    public static final String CHIT_GROUP_ID_NOT_FOUND = "JPOS013";
+    
     
 
 }
