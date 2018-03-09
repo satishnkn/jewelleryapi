@@ -26,8 +26,8 @@ public class ChitGroupController {
 		this.chitGroupService = chitGroupService;
 	}
 	
-	@POST    
+	/*@POST    
     @Path("/v1.0/chitgroup")
     @Consumes({ "application/json" })
-    @Produces({ "application/json" })
+    @Produces({ "application/json" })*/
 }
