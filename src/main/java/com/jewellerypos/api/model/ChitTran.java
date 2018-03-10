@@ -23,16 +23,19 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
-@Table(name = "CHITMEMBER")
-public class ChitMember {
+@Table(name = "CHITTRAN")
+public class ChitTran {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "TRAN_NO")
+    private long tranNo;
+    
+    @Column(name = "TRAN_DATE")
+    private LocalDateTime tranDate;
+    
     @Column(name = "CHIT_MEMBER_SNO")
     private long chitMemberSno;
-    
-    @Column(name = "CHIT_GROUP_SNO")
-    private long chitGroupSno;
     
     @Column(name = "GROUP_CODE")
     private String groupCode;
@@ -40,50 +43,32 @@ public class ChitMember {
     @Column(name = "MSNO")
     private long msno;
     
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
-    @JsonSerialize(using = LocalDateTimeSerializer.class)  
-    @Column(name = "JOIN_DATE")
-    private LocalDateTime joinDate; 
+    @Column(name = "AMOUNT")
+    private double amount;
     
-    @Column(name = "CUST_NAME")
-    private String custName;
+    @Column(name = "PAYMENT_TYPE")
+    private String paymentType;
     
-    @Column(name = "ADDR1")
-    private String addr1;
+    @Column(name = "REMARKS")
+    private String remarks;
     
-    @Column(name = "ADDR2")
-    private String addr2;
+    @Column(name = "TRAN_STATUS")
+    private String transtatus;
     
-    @Column(name = "CITY")
-    private String city;
+    @Column(name = "RATE")
+    private double rate;
     
-    @Column(name= "STATE")
-    private String state;
+    @Column(name = "WEIGHT")
+    private double weight;
     
-    @Column(name = "MOBILENO")
-    private String mobileno;
-    
-    @Column(name = "PHONE")
-    private String phone;
-    
-    @Column(name = "PINCODE")
-    private String pincode;
-    
-    @Column(name = "IMAGERPATH")
-    private String imagepath;
-    
-    @Column(name = "INSTALMENT_AMT")
-    private double instalmentAmt;
+    @Column(name = "OPERATOR_CODE")
+    private long operatorCode;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
     @JsonSerialize(using = LocalDateTimeSerializer.class)  
-    @Column(name = "CLOSE_DATE")
-    private LocalDateTime closeDate;
-    
-    @Column(name = "SALE_BILLREFNO")
-    private long saleBillrefno;
-    
+    @Column(name = "UPDATED_ON")
+    private LocalDateTime updatedOn;
 
 }
+
