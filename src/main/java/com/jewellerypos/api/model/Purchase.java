@@ -97,7 +97,6 @@ public class Purchase implements Serializable{
 	private String purchaseType;
 	
 	@OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
             mappedBy = "purchase")
 	private Set<PurchaseAddon> purchaseAddon;
 	

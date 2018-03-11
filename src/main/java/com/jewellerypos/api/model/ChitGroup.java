@@ -31,7 +31,7 @@ public class ChitGroup {
     @Column(name = "CHIT_GROUP_SNO")
     private long chitGroupSno;
     
-    @Column(name= "CHIT_GROUP_SNO")
+    @Column(name= "CHIT_GROUP_NAME")
     private String chitGroupName;
     
     @Column(name = "CHIT_AMOUNT")

@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -30,6 +31,7 @@ public class DealerServiceImpl implements DealerService {
 	
 	private final DealerRepository dealerRepository;
 	
+	@Autowired
 	public DealerServiceImpl(DealerRepository dealerRepository) {
 		this.dealerRepository = dealerRepository;
 	}
@@ -39,8 +41,8 @@ public class DealerServiceImpl implements DealerService {
 		Dealer crDealer = new Dealer();
 		
 		Dealer dealer = new Dealer();
-		dealer = dealerRepository.findByMobileNo(dealerReq.getMobileNo());
-		if(dealer != null)
+		Dealer existdealer = dealerRepository.findByMobileNo(dealerReq.getMobileNo());
+		if(existdealer != null)
 			throw new DealerAlreadyExistException(ErrorScenario.DEALER_ALREADY_EXIST, dealerReq.getMobileNo());
 		dealer.setDealerName(dealerReq.getDealerName());
 		dealer.setDealerCompany(dealerReq.getDealerCompany());

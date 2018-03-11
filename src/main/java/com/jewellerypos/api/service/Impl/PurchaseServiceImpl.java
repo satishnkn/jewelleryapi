@@ -79,6 +79,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 			p.setRoundOfAmount(purchase.getRoundOfAmount());
 			p.setAmount(purchase.getAmount());
 			p.setPurchaseType(purchase.getPurchaseType());
+			
 			p.setPurchaseAddon(purchase.getPurchaseAddon());
 			p.setBillRefNo(purchaseReq.getBillRefNo());
 			p.setBillRefDate(purchaseReq.getBillRefDate());

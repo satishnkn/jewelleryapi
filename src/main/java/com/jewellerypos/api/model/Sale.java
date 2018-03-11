@@ -98,7 +98,7 @@ public class Sale implements Serializable {
 	
 	@OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "tag")
+            mappedBy = "sale")
 	private Set<SaleAddon> saleAddon;
 	
 	@Column(name = "AMOUNT")
