@@ -8,6 +8,7 @@
 	</appender>
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
 	  <!-- <file>/opt/logs/jpos.log</file> -->
+		<!-- <file>/home/admin-pc/jewellery_api/jpos.log</file> -->
 		<file>/home/jewellery_api/jpos.log</file>
 		<append>true</append>
 		<encoder>
