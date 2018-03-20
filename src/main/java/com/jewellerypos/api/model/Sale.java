@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -96,9 +97,8 @@ public class Sale implements Serializable {
 	@Column(name = "OTHER_CHARGE")
 	private double otherCharge;
 	
-	@OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "sale")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "SALE_NO", nullable = false)
 	private Set<SaleAddon> saleAddon;
 	
 	@Column(name = "AMOUNT")

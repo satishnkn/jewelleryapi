@@ -15,7 +15,12 @@ public enum ErrorScenario {
 	TAG_NOT_FOUND(JPOSErrorConstant.TAG_NOT_FOUND_ERRORCODE,"{0} is not found.","{0} is not found."),
 	CHIT_GROUP_ID_NOT_FOUND(JPOSErrorConstant.CHIT_GROUP_ID_NOT_FOUND_ERRORCODE,"Chitgroup id {0} is not found.","Chitgroup id {0} is not found."),
 	CHIT_MEMBER_NOT_FOUND(JPOSErrorConstant.CHIT_MEMBER_NOT_FOUND_ERRORCODE,"Chit Member id {0} is not found.","Chit Member id {0} is not found."),
-	CHIT_TRANSACTION_NOT_FOUND(JPOSErrorConstant.CHIT_TRANSACTION_NOT_FOUND_ERRORCODE,"Chit Transaction {0} is not found.","Chit Transaction {0} is not found.")
+	CHIT_TRANSACTION_NOT_FOUND(JPOSErrorConstant.CHIT_TRANSACTION_NOT_FOUND_ERRORCODE,"Chit Transaction {0} is not found.","Chit Transaction {0} is not found."),
+	MOBILENO_ALREADY_EXIST(JPOSErrorConstant.MOBILENO_ALREADY_EXIST_ERRORCODE, "Mobile No {0} Already Exist.", "Mobile No {0} Already Exist."),
+	OPERATOR_NOT_FOUND(JPOSErrorConstant.OPERATOR_NOT_FOUND_ERRORCODE, "Operator not Found.","Operator not Found."),
+	PASSWORD_NOT_MATCHED(JPOSErrorConstant.PASSWORD_NOT_MATCHED_ERRORCODE,"Password not Matched.-"+JPOSErrorConstant.PASSWORD_NOT_MATCHED_ERRORCODE,"Password not Matched.-"+JPOSErrorConstant.PASSWORD_NOT_MATCHED_ERRORCODE),
+	COOKIE_NOT_MATCHED(JPOSErrorConstant.COOKIE_NOT_MATCHED_ERRORCODE,"Cookie not matched","Cookie not matched"),
+	OPERATION_FORBIDDEN(JPOSErrorConstant.OPERATION_FORBIDDEN_ERRORCODE,"Operation forbidden for your role.","Operation forbidden for your role.")
 	;
     
     public final String code;

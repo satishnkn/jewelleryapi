@@ -34,11 +34,6 @@ public class SaleAddon implements Serializable{
 	@Column(name = "TAG_ADDON_ID")
 	private long saleAddonId;
 	
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SALE_NO", nullable = false)
-	private Sale sale;
-	
 	@Column(name = "ADDON_PRODUCT_CODE")
 	private long addonProductCode;
 	

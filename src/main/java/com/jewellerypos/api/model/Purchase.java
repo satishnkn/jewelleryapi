@@ -2,6 +2,7 @@ package com.jewellerypos.api.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -96,8 +98,8 @@ public class Purchase implements Serializable{
 	@Column(name = "PURCHASE_TYPE")
 	private String purchaseType;
 	
-	@OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "purchase")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "PURCHASE_NO", nullable = false)
 	private Set<PurchaseAddon> purchaseAddon;
 	
 	@Column(name = "BILL_REFNO")
@@ -124,7 +126,7 @@ public class Purchase implements Serializable{
 	@Column(name = "TOTAL_AMOUNT")
 	private double totalAmount;
 	
-	 @Column(name = "OPERATOR_CODE")
+	@Column(name = "OPERATOR_CODE")
     private long operatorCode;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -138,5 +140,16 @@ public class Purchase implements Serializable{
     @JsonSerialize(using = LocalDateTimeSerializer.class)  
     @Column(name = "UPDATED_ON")
     private LocalDateTime updatedOn;
+    
+    
+    /*public void addPurchaseAddon(PurchaseAddon paddon) {
+        if (paddon != null) {
+           if (purchaseAddon == null) {
+               purchaseAddon = new HashSet<PurchaseAddon>();          
+           }
+           purchaseAddon.add(paddon);
+           paddon.setPurchase(this);
+        }
+     }*/
 	
 }

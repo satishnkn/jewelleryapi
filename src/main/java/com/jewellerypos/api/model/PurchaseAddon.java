@@ -38,11 +38,6 @@ public class PurchaseAddon implements Serializable {
 	@Column(name = "PURCHASE_ADDON_ID")
 	private long purchaseAddonId;
 	
-	
-	@ManyToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PURCHASE_NO", nullable = false)
-	private Purchase purchase;
-	
 	@Column(name = "ADDON_PRODUCT_CODE")
 	private long addonProductCode;
 	

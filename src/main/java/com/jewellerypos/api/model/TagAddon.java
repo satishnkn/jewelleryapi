@@ -38,10 +38,6 @@ public class TagAddon implements Serializable{
 	private long tagAddonId;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TAG_NO", nullable = false)
-	private Tag tag;
-	
 	@Column(name = "ADDON_PRODUCT_CODE")
 	private long addonProductCode;
 	

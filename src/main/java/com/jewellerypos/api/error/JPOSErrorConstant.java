@@ -25,6 +25,17 @@ public class JPOSErrorConstant {
     
     public static final String CHIT_TRANSACTION_NOT_FOUND_ERRORCODE = "JPOS015";
     
+    public static final String MOBILENO_ALREADY_EXIST_ERRORCODE="JPOS016";
+    
+    public static final String OPERATOR_NOT_FOUND_ERRORCODE="JPOS017";
+    
+    public static final String PASSWORD_NOT_MATCHED_ERRORCODE ="JPOS018";
+    
+    public static final String COOKIE_NOT_MATCHED_ERRORCODE ="JPOS019";
+    
+    public static final String OPERATION_FORBIDDEN_ERRORCODE ="JPOS020";
+    
+    
     
 
 }

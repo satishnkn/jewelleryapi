@@ -2,7 +2,7 @@ package com.jewellerypos.api.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,9 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -30,78 +27,54 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
-@Table(name = "TAG")
-public class Tag implements Serializable {
+@Table(name = "OPERATOR")
+public class Operator implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8288702134276276640L;
-	
-	@Id
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6963894718047218501L;
+    
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "TAG_NO")
-	private long tagNo;
-	
-	@NotNull
-	@Column(name = "TAG_ID")
-	private String tagId;
-			
-	
-	@Column(name = "TAG_PLUS_DATE")
-	private LocalDateTime tagPlusDate;
-		
-	@NotBlank
-	@Column(name = "PRODUCT_CODE")
-	private long productCode;
-	
-	@Column(name = "PIECE")
-	private int piece;
-	
-	@Column(name = "GROSS_WEIGHT")
-	private double grossWeight;
-	
-	@Column(name = "NET_WEIGHT")
-	private double netWeight;
-	
-	@Column(name = "LESS_WEIGHT")
-	private double lessWeight;
-	
-	@Column(name = "PURCHASE_RATE")
-	private double purchaseRate;
-	
-	@Column(name = "PURCHASE_NO")
-	private long purchaseNo;
-	
-	@Column(name = "WASTAGE")
-	private double wastage;
-	
-	@Column(name = "MAKING_CHARGE")
-	private double makingCharge;
-	
-	@Column(name = "GROSS_OR_NET")
-	private String grossOrNet;
-	
-	@Column(name = "DISCOUNT")
-	private double discount;
-		
-	@Column(name = "OTHER_CHARGE")
-	private double otherCharge;
-	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "TAG_NO", nullable = false)
-	private Set<TagAddon> tagAddon;
-	
-	@Column(name = "SALE_BILL_NO")
-	private String saleBillNo;
-	
-	@Column(name = "TAG_MINUS_DATE")
-	private LocalDateTime tagMinusDate;
-		
-	@Column(name = "OPERATOR_CODE")
+    @Column(name = "OPERATOR_CODE")
     private long operatorCode;
+    
+    @Column(name = "OPERATOR_NAME")
+    private String operatorName;
+    
+    @Column(name = "LOGIN_ID")
+    private String loginId;
+    
+    @Column(name = "LOGIN_PASSWORD")
+    private String loginPassword;
+    
+    @Column(name = "OPERATOR_QUALIFICATION")
+    private String operatorQualification;
+    
+    @Column(name = "OPERATOR_DESIGNATION")
+    private String operatorDesignation;
+    
+    @Column(name = "OPERATOR_ROLE")
+    private String operatorRole;
+    
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "OPERATOR_CODE", nullable = false)
+    private List<OperatorDevice> operatorDevice;
+    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @Column(name = "OPERATOR_DOB")
+    private LocalDateTime operatorDob;
+    
+    @Column(name = "CREATED_BY")
+    private long createdBy;
+    
+    @Column(name = "UPDATED_BY")
+    private long updatedBy;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
@@ -114,5 +87,6 @@ public class Tag implements Serializable {
     @JsonSerialize(using = LocalDateTimeSerializer.class)  
     @Column(name = "UPDATED_ON")
     private LocalDateTime updatedOn;
+    
 
 }

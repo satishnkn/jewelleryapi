@@ -2,7 +2,9 @@ package com.jewellerypos.api.service.Impl;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -18,6 +20,7 @@ import com.jewellerypos.api.error.ProductNotFoundException;
 import com.jewellerypos.api.model.Control;
 import com.jewellerypos.api.model.Product;
 import com.jewellerypos.api.model.Purchase;
+import com.jewellerypos.api.model.PurchaseAddon;
 import com.jewellerypos.api.repository.ControlRepository;
 import com.jewellerypos.api.repository.ProductRepository;
 import com.jewellerypos.api.repository.PurchaseRepository;
