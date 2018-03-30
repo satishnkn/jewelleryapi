@@ -31,5 +31,9 @@ public class ProductRequest {
     
     @NotNull
     private long operatorCode;
+    
+    private String tagPrefix;
+    
+    private long tagSeqno;
 
 }

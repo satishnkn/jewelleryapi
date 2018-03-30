@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 
 import com.jewellerypos.api.error.ErrorScenario;
 import com.jewellerypos.api.error.TagNotFoundException;
+import com.jewellerypos.api.model.Product;
 import com.jewellerypos.api.model.Tag;
+import com.jewellerypos.api.repository.ProductRepository;
 import com.jewellerypos.api.repository.TagRepository;
 import com.jewellerypos.api.response.StatusResponse;
 import com.jewellerypos.api.service.TagService;
@@ -28,17 +30,27 @@ public class TagServiceImpl implements TagService{
 	private static final Logger LOGGER = LoggerFactory.getLogger(TagServiceImpl.class);
 	
 	private final TagRepository tagRepository;
+	private final ProductRepository productRepository;
 	
 	@Autowired
-	public TagServiceImpl(TagRepository tagRepository) {
+	public TagServiceImpl(TagRepository tagRepository,ProductRepository productRepository) {
 		this.tagRepository = tagRepository;
+		this.productRepository = productRepository;
 	}
 
 	@Override
 	public StatusResponse createTag(Tag tagReq) {
 		StatusResponse response = new StatusResponse();
 		response.setStatus(false);
+		String tagPrefix;
+		long tagSeqno;
 		Tag plusTag = tagReq;
+		Product p = productRepository.findByProductCode(tagReq.getProductCode());
+		tagSeqno = p.getTagSeqno() + 1;
+		p.setTagSeqno(tagSeqno);
+		tagPrefix =  p.getTagPrefix() + tagSeqno;
+		productRepository.save(p);
+		plusTag.setTagId(tagPrefix);
 		plusTag.setCreatedOn(LocalDateTime.now());
 		plusTag.setUpdatedOn(LocalDateTime.now());
 		plusTag.setTagPlusDate(LocalDateTime.now());
@@ -57,8 +69,10 @@ public class TagServiceImpl implements TagService{
 		Tag existTag = tagRepository.findByTagId(tagId);
 		if(existTag == null)
 			throw new TagNotFoundException(ErrorScenario.TAG_NOT_FOUND, tagId);
-		existTag.setUpdatedOn(LocalDateTime.now());
-		Tag t =  tagRepository.save(existTag);
+		tagReq.setUpdatedOn(LocalDateTime.now());
+		tagReq.setTagNo(existTag.getTagNo());
+		tagReq.setTagId(tagId);
+		Tag t =  tagRepository.save(tagReq);
 		if(t != null){
 			response.setIdentifier(t.getTagNo());
 			response.setStatus(true);

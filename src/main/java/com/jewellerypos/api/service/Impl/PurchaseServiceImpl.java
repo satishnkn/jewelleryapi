@@ -108,13 +108,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public PurchaseResponse updatePurchase(long purchaseBillNo, PurchaseRequest purchaseReq) {
 		List<Purchase> exist = purchaseRepository.findByPurchaseBillNo(purchaseBillNo);
-		if(exist == null)
-			throw new ProductNotFoundException();
+		System.out.println("test11111111111111111111 :"+exist);
+		if(exist.isEmpty())
+			throw new ProductNotFoundException("tested purchase");
 		if(exist.get(0).getBillStatus().equals("CANCEL"))
 			throw new ProductNotFoundException("Bill already Cancelled");
-		
+		System.out.println("test11111112222222222222222");
 		PurchaseResponse response = createPurchase(purchaseReq);
-		
+		System.out.println("test1111111333333");
 		List<Purchase> cancelBill = new ArrayList<>();
 		for(Purchase exp : exist){
 			exp.setBillRefNo("Edit - "+String.valueOf(response.getPurchaseBillno()));
@@ -124,7 +125,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 			cancelBill.add(exp);
 		}
 		purchaseRepository.save(cancelBill);
-		
+		System.out.println("test11111115555555555555");
 		return response;
 	}
 
@@ -133,7 +134,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		StatusResponse response = new StatusResponse();
 		List<Purchase> exist = purchaseRepository.findByPurchaseBillNo(purchaseBillNo);
-		if(exist == null)
+		if(exist.isEmpty())
 			throw new BillnoNotValidException(ErrorScenario.BILLNO_NOT_VALID,"Purchase BillNo : "+purchaseBillNo);
 		if(exist.get(0).getBillStatus().equals("CANCEL"))
 			throw new BillAlreadyCancelledException(ErrorScenario.BILL_ALREADY_CANCELED,"Purchase BillNo : "+purchaseBillNo);

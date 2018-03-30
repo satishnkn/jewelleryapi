@@ -68,6 +68,12 @@ public class Product implements Serializable{
     @Column(name = "OPERATOR_CODE")
     private long operatorCode;
     
+    @Column(name = "TAG_PREFIX")
+    private String tagPrefix;
+    
+    @Column(name = "TAG_SEQNO")
+    private long tagSeqno;
+    
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -79,5 +85,6 @@ public class Product implements Serializable{
     @JsonSerialize(using = LocalDateTimeSerializer.class)  
     @Column(name = "UPDATED_ON")
     private LocalDateTime updatedOn;
+    
 
 }
