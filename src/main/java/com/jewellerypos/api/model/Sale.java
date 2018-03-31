@@ -85,7 +85,7 @@ public class Sale implements Serializable {
 	@Column(name = "GROSS_OR_NET")
 	private String grossOrNet;
 	
-	@Column(name = "PURCHASE_TAX_PERCENT")
+	@Column(name = "SALE_TAX_PERCENT")
 	private double saleTaxPercent;
 	
 	@Column(name = "DISCOUNT")

@@ -31,7 +31,7 @@ public class SaleAddon implements Serializable{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "TAG_ADDON_ID")
+	@Column(name = "SALE_ADDON_ID")
 	private long saleAddonId;
 	
 	@Column(name = "ADDON_PRODUCT_CODE")
