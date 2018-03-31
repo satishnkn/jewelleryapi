@@ -10,6 +10,7 @@ import com.jewellerypos.api.exceptionmapper.CustomExceptionMapper;
 import com.jewellerypos.api.exceptionmapper.CustomValidationExceptionMapper;
 import com.jewellerypos.api.exceptionmapper.NotAuthorizedExceptionMapper;
 import com.jewellerypos.api.exceptionmapper.NotFoundExceptionMapper;
+import com.jewellerypos.api.filter.AuthenticationFilter;
 import com.jewellerypos.api.model.ChitMember;
 import com.jewellerypos.api.restcontroller.ChitGroupController;
 import com.jewellerypos.api.restcontroller.ChitMemberController;
@@ -41,6 +42,7 @@ public class JerseyConfig extends ResourceConfig {
         register(CustomValidationExceptionMapper.class);
         register(NotFoundExceptionMapper.class);
         register(NotAuthorizedExceptionMapper.class);
+        register(AuthenticationFilter.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);

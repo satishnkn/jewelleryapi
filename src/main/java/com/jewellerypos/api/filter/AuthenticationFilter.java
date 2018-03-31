@@ -72,10 +72,13 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     
     @Override
     public void filter(ContainerRequestContext requestContext) {
+    	
+    	System.out.println("reach Filter");
         
         Method method = resourceInfo.getResourceMethod();
         List<Role> methodRoles = extractRoles(method);
         
+        System.out.println("reach Filter--1");
         // Access allowed for all
         if (!method.isAnnotationPresent(PermitAll.class)) {
             // Access denied for all
@@ -83,13 +86,13 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 requestContext.abortWith(ACCESS_FORBIDDEN);
                 return;
             }
-            
+            System.out.println("reach Filter--2");
             // Get request headers
             final MultivaluedMap<String, String> headers = requestContext.getHeaders();
             
             // Fetch authorization header
             final List<String> authorization = headers.get(AUTHORIZATION_PROPERTY);
-            
+            System.out.println("reach Filter--3");
             // If no authorization information present; block access
             if (authorization == null || authorization.isEmpty()) {
                 requestContext.abortWith(ACCESS_DENIED);
@@ -101,7 +104,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             
             // Decode username and password
             String usernameAndPassword = new String(Base64.decode(encodedUserPassword.getBytes()));
-            ;
+            
             
             // Split username and password tokens
             final StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");
@@ -111,7 +114,9 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             // Verifying Username and password
             log.info(username);
             log.info(password);
+            System.out.println("reach Filter ::"+username);
             
+            System.out.println("reach Filter ::"+password);
             /*
              * System.out.println(username); System.out.println(password);
              */
@@ -160,10 +165,13 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         // String userRole = userMgr.getUserRole(username);
         
         // partyRepository.findByPartyId(Pty_ID)
+        System.out.println("reach Filter ::"+username);
         Long ID = new Long(username);
         // DeviceRegistration deviceRegistration =
         // deviceRegistrationRepository.findOne(ID);
+        
         Operator operator =  operatorRepository.findByOperatorCode(ID);
+        System.out.println("reach Filter--"+operator.getLoginId());
         if (operator != null) {
             
             List<OperatorDevice> deviceRegistrationList = operator.getOperatorDevice();
@@ -171,11 +179,16 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             if (!deviceRegistrationList.isEmpty()) {
                 String cookie = deviceRegistrationList.stream().filter(p -> p.getDeviceStatus().equals("ACTIVE")).map(m -> m.getCookie()).findAny().orElse(null);
                 if (cookie.equals(password)) {
-                    if(methodRoles.contains(operator.getOperatorRole()))
+                	methodRoles.forEach( x -> System.out.println(x.name()));
+                	System.out.println(operator.getOperatorRole());
+                
+                    if(methodRoles.contains(operator.getOperatorRole())){
                         isAllowed = true;
+                        System.out.println("Came testtt");
+                    }
                     else
                         throw new NotAuthorizedException(ErrorScenario.OPERATION_FORBIDDEN);
-                        
+                    System.out.println("refsfrerrrf");
                     
                 } else {
                     throw new NotAuthorizedException(ErrorScenario.COOKIE_NOT_MATCHED);

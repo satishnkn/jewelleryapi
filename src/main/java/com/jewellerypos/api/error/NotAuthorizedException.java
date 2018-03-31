@@ -21,7 +21,7 @@ public class NotAuthorizedException extends RuntimeException{
     }
     
     public NotAuthorizedException(ErrorScenario errorScenario) {
-        super(errorScenario.responseMessage);
+        super(errorScenario.code+"-"+errorScenario.responseMessage);
     }
 
 }
