@@ -11,6 +11,9 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.jewellerypos.api.error.BillAlreadyCancelledException;
@@ -26,6 +29,8 @@ import com.jewellerypos.api.repository.ProductRepository;
 import com.jewellerypos.api.repository.PurchaseRepository;
 import com.jewellerypos.api.request.PurchaseListRequest;
 import com.jewellerypos.api.request.PurchaseRequest;
+import com.jewellerypos.api.response.PageProductResposne;
+import com.jewellerypos.api.response.PagePurchaseResponse;
 import com.jewellerypos.api.response.PurchaseResponse;
 import com.jewellerypos.api.response.StatusResponse;
 import com.jewellerypos.api.restcontroller.PurchaseController;
@@ -161,6 +166,35 @@ public class PurchaseServiceImpl implements PurchaseService {
 		if(purchaseList == null)
 			throw new BillnoNotValidException(ErrorScenario.BILLNO_NOT_VALID,"Purchase BillNo :"+purchaseBillNo); 
 		return purchaseList;
+	}
+
+	@Override
+	public PagePurchaseResponse getAllPurchase(int page, int size) {
+		
+      PagePurchaseResponse response = new PagePurchaseResponse();
+        
+        if(size == 0){
+        	List<Purchase> purchaseLst = purchaseRepository.findAll();
+            response.setPurchaseLst(purchaseLst);
+            response.setNumber(0);
+            response.setNumberOfElements(purchaseLst.size());
+            response.setSize(0);
+            response.setTotalElements(purchaseLst.size());
+            response.setTotalPages(1);
+        }
+        else{
+            PageRequest pageRequest = new PageRequest(page, size,
+                new Sort(Sort.Direction.DESC, "purchaseNo"));
+            Page<Purchase> pagewisePurchase =  purchaseRepository.findAll(pageRequest);
+            response.setPurchaseLst(pagewisePurchase.getContent());
+            response.setNumber(pagewisePurchase.getNumber());
+            response.setNumberOfElements(pagewisePurchase.getNumberOfElements());
+            response.setTotalElements(pagewisePurchase.getTotalElements());
+            response.setTotalPages(pagewisePurchase.getTotalPages());
+            response.setSize(pagewisePurchase.getSize()); 
+            
+        }
+		return response;
 	}
 
 }

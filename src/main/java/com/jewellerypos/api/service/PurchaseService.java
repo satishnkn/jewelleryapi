@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jewellerypos.api.model.Purchase;
 import com.jewellerypos.api.request.PurchaseRequest;
+import com.jewellerypos.api.response.PagePurchaseResponse;
 import com.jewellerypos.api.response.PurchaseResponse;
 import com.jewellerypos.api.response.StatusResponse;
 
@@ -16,5 +17,7 @@ public interface PurchaseService {
 	public StatusResponse cancelPurchase(long purchaseBillNo);
 
 	public List<Purchase> getPurchaseByPurchaseBillNo(long purchaseBillNo);
+
+	public PagePurchaseResponse getAllPurchase(int page, int size);
 
 }

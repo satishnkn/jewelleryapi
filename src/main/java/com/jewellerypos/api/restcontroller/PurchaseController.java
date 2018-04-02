@@ -10,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jewellerypos.api.model.Purchase;
 import com.jewellerypos.api.request.ProductRequest;
 import com.jewellerypos.api.request.PurchaseRequest;
+import com.jewellerypos.api.response.PagePurchaseResponse;
 import com.jewellerypos.api.response.ProductRepsonse;
 import com.jewellerypos.api.response.PurchaseResponse;
 import com.jewellerypos.api.response.StatusResponse;
@@ -75,6 +77,15 @@ public class PurchaseController {
         
     }
 	
+	
+	@GET 
+    @Path("/v1.0/purchase")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public PagePurchaseResponse getAllPurchase(@QueryParam("page") int page,@QueryParam("size") int size){
+        return purchaseService.getAllPurchase(page,size);
+        
+    }
 	
 
 }
