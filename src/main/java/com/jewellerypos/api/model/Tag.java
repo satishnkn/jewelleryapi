@@ -45,7 +45,7 @@ public class Tag implements Serializable {
 	@Column(name = "TAG_NO")
 	private long tagNo;
 	
-	@NotNull
+	
 	@Column(name = "TAG_ID")
 	private String tagId;
 			
@@ -53,7 +53,7 @@ public class Tag implements Serializable {
 	@Column(name = "TAG_PLUS_DATE")
 	private LocalDateTime tagPlusDate;
 		
-	@NotBlank
+	@NotNull
 	@Column(name = "PRODUCT_CODE")
 	private long productCode;
 	
