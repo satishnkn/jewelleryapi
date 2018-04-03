@@ -108,7 +108,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public PurchaseResponse updatePurchase(long purchaseBillNo, PurchaseRequest purchaseReq) {
 		List<Purchase> exist = purchaseRepository.findByPurchaseBillNo(purchaseBillNo);
-		System.out.println("test11111111111111111111 :"+exist);
 		if(exist.isEmpty())
 			throw new ProductNotFoundException("tested purchase");
 		if(exist.get(0).getBillStatus().equals("CANCEL"))

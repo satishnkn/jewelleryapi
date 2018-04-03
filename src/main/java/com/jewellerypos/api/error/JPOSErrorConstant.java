@@ -35,6 +35,8 @@ public class JPOSErrorConstant {
     
     public static final String OPERATION_FORBIDDEN_ERRORCODE ="JPOS020";
     
+    public static final String PURCHASE_NOT_FOUND_ERRORCODE = "JPOS021";
+    
     
     
 

@@ -14,6 +14,7 @@ import com.jewellerypos.api.error.JPOSErrorConstant;
 import com.jewellerypos.api.error.MetalNotFoundException;
 import com.jewellerypos.api.error.ProductAlreadyExistException;
 import com.jewellerypos.api.error.ProductNotFoundException;
+import com.jewellerypos.api.error.PurchaseNotFoundException;
 import com.jewellerypos.api.error.RateNotUpdatedException;
 
 
@@ -77,6 +78,12 @@ public class CustomExceptionMapper implements ExceptionMapper<Exception>{
             em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
             em.setStatus("Bad Request");
         }
+		else if (exception instanceof PurchaseNotFoundException){
+		    em.setCode(JPOSErrorConstant.PURCHASE_NOT_FOUND_ERRORCODE);
+            em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
+            em.setStatus("Bad Request");
+		    
+		}
 		else {			
 			em.setCode(JPOSErrorConstant.UNKNOWN_ERRORCODE);
     		em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
