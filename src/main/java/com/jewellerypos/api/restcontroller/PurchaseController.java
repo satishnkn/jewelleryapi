@@ -87,5 +87,15 @@ public class PurchaseController {
         
     }
 	
+	
+	@GET 
+    @Path("/v1.0/purchasevstag")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public PagePurchaseResponse getPurchasevsTag(@QueryParam("page") int page,@QueryParam("size") int size){
+        return purchaseService.getPurchasevsTag(page,size);
+        
+    }
+	
 
 }

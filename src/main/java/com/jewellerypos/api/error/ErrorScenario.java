@@ -20,7 +20,8 @@ public enum ErrorScenario {
 	OPERATOR_NOT_FOUND(JPOSErrorConstant.OPERATOR_NOT_FOUND_ERRORCODE, "Operator not Found.","Operator not Found."),
 	PASSWORD_NOT_MATCHED(JPOSErrorConstant.PASSWORD_NOT_MATCHED_ERRORCODE,"Password not Matched.-"+JPOSErrorConstant.PASSWORD_NOT_MATCHED_ERRORCODE,"Password not Matched.-"+JPOSErrorConstant.PASSWORD_NOT_MATCHED_ERRORCODE),
 	COOKIE_NOT_MATCHED(JPOSErrorConstant.COOKIE_NOT_MATCHED_ERRORCODE,"Cookie not matched","Cookie not matched"),
-	OPERATION_FORBIDDEN(JPOSErrorConstant.OPERATION_FORBIDDEN_ERRORCODE,"Operation forbidden for your role.","Operation forbidden for your role.")
+	OPERATION_FORBIDDEN(JPOSErrorConstant.OPERATION_FORBIDDEN_ERRORCODE,"Operation forbidden for your role.","Operation forbidden for your role."),
+	PURCHASE_NOT_FOUND(JPOSErrorConstant.PURCHASE_NOT_FOUND_ERRORCODE, "Purchase BillNo {0} is not found.","Purchase BillNo {0} is not found.")
 	;
     
     public final String code;

@@ -82,7 +82,6 @@ public class CustomExceptionMapper implements ExceptionMapper<Exception>{
 		    em.setCode(JPOSErrorConstant.PURCHASE_NOT_FOUND_ERRORCODE);
             em.setMessage(exception.getClass().toString()+"  "+exception.getMessage());
             em.setStatus("Bad Request");
-		    
 		}
 		else {			
 			em.setCode(JPOSErrorConstant.UNKNOWN_ERRORCODE);

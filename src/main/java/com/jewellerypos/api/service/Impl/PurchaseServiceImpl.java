@@ -3,10 +3,13 @@ package com.jewellerypos.api.service.Impl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.transaction.Transactional;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +23,13 @@ import com.jewellerypos.api.error.BillAlreadyCancelledException;
 import com.jewellerypos.api.error.BillnoNotValidException;
 import com.jewellerypos.api.error.ErrorScenario;
 import com.jewellerypos.api.error.ProductNotFoundException;
+import com.jewellerypos.api.error.PurchaseNotFoundException;
 import com.jewellerypos.api.model.Control;
 import com.jewellerypos.api.model.Product;
 import com.jewellerypos.api.model.Purchase;
 import com.jewellerypos.api.model.PurchaseAddon;
 import com.jewellerypos.api.repository.ControlRepository;
+import com.jewellerypos.api.repository.CustomRepository;
 import com.jewellerypos.api.repository.ProductRepository;
 import com.jewellerypos.api.repository.PurchaseRepository;
 import com.jewellerypos.api.request.PurchaseListRequest;
@@ -45,13 +50,15 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private final PurchaseRepository purchaseRepository;
 	private final ControlRepository controlRepository;
 	private final ProductRepository productRepository;
+	private final CustomRepository customRepository;
 	
 	@Autowired
 	public PurchaseServiceImpl(PurchaseRepository purchaseRepository,
-			ControlRepository controlRepository,ProductRepository productRepository) {
+			ControlRepository controlRepository,ProductRepository productRepository,CustomRepository customRepository) {
 		this.purchaseRepository = purchaseRepository;
 		this.controlRepository = controlRepository;
 		this.productRepository = productRepository;
+		this.customRepository = customRepository ;
 	}
 
 	@Override
@@ -114,12 +121,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public PurchaseResponse updatePurchase(long purchaseBillNo, PurchaseRequest purchaseReq) {
 		List<Purchase> exist = purchaseRepository.findByPurchaseBillNo(purchaseBillNo);
 		if(exist.isEmpty())
-			throw new ProductNotFoundException("tested purchase");
+			throw new PurchaseNotFoundException(ErrorScenario.PURCHASE_NOT_FOUND,String.valueOf(purchaseBillNo));
 		if(exist.get(0).getBillStatus().equals("CANCEL"))
-			throw new ProductNotFoundException("Bill already Cancelled");
-		System.out.println("test11111112222222222222222");
+			throw new BillAlreadyCancelledException(ErrorScenario.BILL_ALREADY_CANCELED,"Purchase BillNo : "+purchaseBillNo);
 		PurchaseResponse response = createPurchase(purchaseReq);
-		System.out.println("test1111111333333");
 		List<Purchase> cancelBill = new ArrayList<>();
 		for(Purchase exp : exist){
 			exp.setBillRefNo("Edit - "+String.valueOf(response.getPurchaseBillno()));
@@ -129,7 +134,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 			cancelBill.add(exp);
 		}
 		purchaseRepository.save(cancelBill);
-		System.out.println("test11111115555555555555");
 		return response;
 	}
 
@@ -195,5 +199,27 @@ public class PurchaseServiceImpl implements PurchaseService {
         }
 		return response;
 	}
+
+    @Override
+    public PagePurchaseResponse getPurchasevsTag(int page, int size) {
+        
+        /*public JSONArray beaconsList(String search) {   
+            JSONArray beaconsAray = new JSONArray();
+            JSONObject obj;
+            Map<String, Object> record;
+            List beaconslist = customBeaconMasterRepository.getAllBeacons(search);
+            for (Iterator itr = beaconslist.iterator(); itr.hasNext();) {
+                record = (Map) itr.next();
+                obj = new JSONObject();
+                for (Map.Entry<String, Object> entry : record.entrySet()) {                 
+                    obj.put(entry.getKey(), entry.getValue().toString());               
+                }
+                beaconsAray.add(obj);
+            }
+            return beaconsAray; 
+        }*/
+        
+        return null;
+    }
 
 }

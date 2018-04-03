@@ -20,4 +20,6 @@ public interface PurchaseService {
 
 	public PagePurchaseResponse getAllPurchase(int page, int size);
 
+    public PagePurchaseResponse getPurchasevsTag(int page, int size);
+
 }
