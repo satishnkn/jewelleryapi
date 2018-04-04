@@ -23,6 +23,7 @@ import com.jewellerypos.api.request.PurchaseRequest;
 import com.jewellerypos.api.response.PagePurchaseResponse;
 import com.jewellerypos.api.response.ProductRepsonse;
 import com.jewellerypos.api.response.PurchaseResponse;
+import com.jewellerypos.api.response.PurchasevsTagResponse;
 import com.jewellerypos.api.response.StatusResponse;
 import com.jewellerypos.api.service.PurchaseService;
 
@@ -69,11 +70,20 @@ public class PurchaseController {
 	
 	
 	@GET 
-    @Path("/v1.0/purchase/{purchaseBillno}")
+    @Path("/v1.0/purchasebill/{purchaseBillno}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     public List<Purchase> getPurchaseByPurchaseBillNo(@PathParam("purchaseBillno") long purchaseBillNo ){
         return purchaseService.getPurchaseByPurchaseBillNo(purchaseBillNo);
+        
+    }
+	
+	@GET 
+    @Path("/v1.0/purchase/{purchaseNo}")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+    public Purchase getPurchaseByPurchaseNo(@PathParam("purchaseNo") long purchaseNo ){
+        return purchaseService.getPurchaseByPurchaseNo(purchaseNo);
         
     }
 	
@@ -92,7 +102,7 @@ public class PurchaseController {
     @Path("/v1.0/purchasevstag")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public PagePurchaseResponse getPurchasevsTag(@QueryParam("page") int page,@QueryParam("size") int size){
+    public List<PurchasevsTagResponse> getPurchasevsTag(@QueryParam("page") int page,@QueryParam("size") int size){
         return purchaseService.getPurchasevsTag(page,size);
         
     }

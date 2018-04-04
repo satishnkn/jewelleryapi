@@ -15,38 +15,35 @@ import lombok.Setter;
 @Setter
 public class PurchasevsTagResponse {
     
-    private long purchaseNo;
+    private String purchaseNo;
     
-    private long purchaseBillNo;
+    private String purchaseBillNo;
     
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime purchaseDate;
+    private String purchaseDate;
     
-    private long dealerId;
+    private String dealerId;
     
-    private long productCode;
+    private String productCode;
     
-    private long piece;
+    private String piece;
     
-    private double grossWt;
+    private String grossWt;
     
-    private double netWt;
+    private String netWt;
     
-    private double lessWt;
+    private String lessWt;
     
-    private double otherCharge;
+    private String otherCharge;
     
-    private double billrefNo;
+    private String billrefNo;
     
-    private double tproductCode;
+    private String tproductCode;
     
-    private double tgrossWt;
+    private String tgrossWt;
     
-    private double tnetWt;
+    private String tnetWt;
     
-    private double tlessWt;
+    private String tlessWt;
     
-    private long tpurchaseNo;
+    private String tpurchaseNo;
 }

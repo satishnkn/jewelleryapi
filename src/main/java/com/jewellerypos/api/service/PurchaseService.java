@@ -6,6 +6,7 @@ import com.jewellerypos.api.model.Purchase;
 import com.jewellerypos.api.request.PurchaseRequest;
 import com.jewellerypos.api.response.PagePurchaseResponse;
 import com.jewellerypos.api.response.PurchaseResponse;
+import com.jewellerypos.api.response.PurchasevsTagResponse;
 import com.jewellerypos.api.response.StatusResponse;
 
 public interface PurchaseService {
@@ -20,6 +21,8 @@ public interface PurchaseService {
 
 	public PagePurchaseResponse getAllPurchase(int page, int size);
 
-    public PagePurchaseResponse getPurchasevsTag(int page, int size);
+    public List<PurchasevsTagResponse> getPurchasevsTag(int page, int size);
+
+	public Purchase getPurchaseByPurchaseNo(long purchaseNo);
 
 }

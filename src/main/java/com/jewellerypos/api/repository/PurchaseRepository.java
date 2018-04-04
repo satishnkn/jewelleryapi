@@ -12,4 +12,6 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long>{
 
 	public List<Purchase> findByPurchaseBillNo(long purchaseBillNo);
 
+	public Purchase findByPurchaseNo(long purchaseNo);
+
 }

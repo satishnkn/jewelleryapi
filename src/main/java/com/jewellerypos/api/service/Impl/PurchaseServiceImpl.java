@@ -37,6 +37,7 @@ import com.jewellerypos.api.request.PurchaseRequest;
 import com.jewellerypos.api.response.PageProductResposne;
 import com.jewellerypos.api.response.PagePurchaseResponse;
 import com.jewellerypos.api.response.PurchaseResponse;
+import com.jewellerypos.api.response.PurchasevsTagResponse;
 import com.jewellerypos.api.response.StatusResponse;
 import com.jewellerypos.api.restcontroller.PurchaseController;
 import com.jewellerypos.api.service.PurchaseService;
@@ -201,17 +202,46 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
     @Override
-    public PagePurchaseResponse getPurchasevsTag(int page, int size) {
+    public List<PurchasevsTagResponse> getPurchasevsTag(int page, int size) {
         
         Map<String, Object> record;
+        System.out.println("test 12345wwwwww");
         List purchasevstagList = customRepository.getPurchasevsTag(page, size);
+        System.out.println("test 12345");
+        List<PurchasevsTagResponse> response = new ArrayList<>();
         for(Iterator itr = purchasevstagList.iterator(); itr.hasNext();) {
             record = (Map) itr.next();
-           record.get(key)
-                
-                
+            PurchasevsTagResponse resp = new PurchasevsTagResponse();
+            resp.setPurchaseNo(record.get("PURCHASE_NO").toString());
+            resp.setPurchaseBillNo(record.get("PURCHASE_BILL_NO").toString());
+            resp.setPurchaseDate(record.get("PURCHASA_DATE").toString());
+            resp.setDealerId(record.get("DEALER_ID").toString());
+            resp.setProductCode(record.get("PRODUCT_CODE").toString());
+            resp.setPiece(record.get("PIECE").toString());
+            resp.setGrossWt(record.get("GROSS_WEIGHT").toString());
+            resp.setNetWt(record.get("NET_WEIGHT").toString());
+            resp.setLessWt(record.get("LESS_WEIGHT").toString());
+            resp.setOtherCharge(record.get("OTHER_CHARGE").toString());
+            resp.setBillrefNo(record.get("BILL_REFNO").toString());
+            resp.setTproductCode(record.get("TPRODUCT_CODE").toString());
+            resp.setTproductCode(record.get("TPIECE").toString());
+            resp.setTgrossWt(record.get("TGROSS_WT").toString());
+            resp.setTnetWt(record.get("TNET_WT").toString());
+            resp.setTlessWt(record.get("TLESS_WT").toString());
+            resp.setTpurchaseNo(record.get("TPURCHASE_NO").toString());
+            response.add(resp);     
             }
+		return response;
         }
+
+	@Override
+	public Purchase getPurchaseByPurchaseNo(long purchaseNo) {
+		
+		Purchase purchase = purchaseRepository.findByPurchaseNo(purchaseNo);
+		if(purchase == null)
+			throw new BillnoNotValidException(ErrorScenario.BILLNO_NOT_VALID,"Purchase No :"+purchaseNo); 
+		return purchase;
+	}
             
         
         /*public JSONArray beaconsList(String search) {   
@@ -230,7 +260,7 @@ public class PurchaseServiceImpl implements PurchaseService {
             return beaconsAray; 
         }*/
         
-        return null;
-    }
+        
+    
 
 }
