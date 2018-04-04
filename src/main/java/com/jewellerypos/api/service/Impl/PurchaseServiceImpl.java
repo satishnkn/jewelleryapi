@@ -203,6 +203,17 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public PagePurchaseResponse getPurchasevsTag(int page, int size) {
         
+        Map<String, Object> record;
+        List purchasevstagList = customRepository.getPurchasevsTag(page, size);
+        for(Iterator itr = purchasevstagList.iterator(); itr.hasNext();) {
+            record = (Map) itr.next();
+           record.get(key)
+                
+                
+            }
+        }
+            
+        
         /*public JSONArray beaconsList(String search) {   
             JSONArray beaconsAray = new JSONArray();
             JSONObject obj;
