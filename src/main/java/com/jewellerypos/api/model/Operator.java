@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -59,6 +61,7 @@ public class Operator implements Serializable{
     private String operatorDesignation;
     
     @Column(name = "OPERATOR_ROLE")
+    @Enumerated(EnumType.STRING)
     private Role operatorRole;
     
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

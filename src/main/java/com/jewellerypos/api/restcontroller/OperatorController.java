@@ -2,6 +2,7 @@ package com.jewellerypos.api.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -11,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,7 @@ import com.jewellerypos.api.response.PageProductResposne;
 import com.jewellerypos.api.response.ProductRepsonse;
 import com.jewellerypos.api.response.StatusResponse;
 import com.jewellerypos.api.service.OperatorService;
+import com.jewellerypos.api.util.PasscodeEncryptorUtil;
 import com.jewellerypos.api.util.Role;
 
 @RestController
@@ -49,8 +52,10 @@ public class OperatorController {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Secured({Role.ADMIN,Role.SUPERADMIN})
-    public Operator createOperator(@Valid Operator operator ){
-        return operatorService.createOperator(operator);
+    public Operator createOperator(@Valid Operator operator,@Context HttpServletRequest httpservletRequest ){
+        System.out.println("Reached the method");
+        long creator = PasscodeEncryptorUtil.getCreatorId(httpservletRequest);
+        return operatorService.createOperator(operator,creator);
         
     }
     

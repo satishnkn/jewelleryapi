@@ -165,11 +165,11 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         // String userRole = userMgr.getUserRole(username);
         
         // partyRepository.findByPartyId(Pty_ID)
-        System.out.println("reach Filter ::"+username);
+        System.out.println("reach Filter 11111111111111::"+username);
         Long ID = new Long(username);
         // DeviceRegistration deviceRegistration =
         // deviceRegistrationRepository.findOne(ID);
-        
+        System.out.println("test my ID::"+ID);
         Operator operator =  operatorRepository.findByOperatorCode(ID);
         System.out.println("reach Filter--"+operator.getLoginId());
         if (operator != null) {

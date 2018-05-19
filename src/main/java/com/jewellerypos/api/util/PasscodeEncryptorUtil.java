@@ -3,7 +3,12 @@ package com.jewellerypos.api.util;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.StringTokenizer;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.Context;
+
+import org.glassfish.jersey.internal.util.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -15,6 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PasscodeEncryptorUtil {
 	private static final Logger LOGGER=LoggerFactory.getLogger(PasscodeEncryptorUtil.class);
+	private static final String AUTHENTICATION_SCHEME = "Basic";
 		
 	/**
 	 * This method used to encrypt the parties password instead of storing plain text in database.
@@ -40,4 +46,21 @@ public class PasscodeEncryptorUtil {
         }
         return generatedPassword;
     }
+	
+	public static long getCreatorId(@Context HttpServletRequest req) {
+	    
+	    String tocken = req.getHeader("Authorization");
+	    final String encodedUserPassword = tocken.replaceFirst(AUTHENTICATION_SCHEME + " ", "");
+        
+        // Decode username and password
+        String usernameAndPassword = new String(Base64.decode(encodedUserPassword.getBytes()));
+        
+        final StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");
+        final String username = tokenizer.nextToken();
+        //final String password = tokenizer.nextToken();
+        
+        return Long.parseLong(username);
+        
+        
+	}
 }
