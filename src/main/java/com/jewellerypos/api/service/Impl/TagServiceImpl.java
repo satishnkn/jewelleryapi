@@ -21,6 +21,7 @@ import com.jewellerypos.api.model.Tag;
 import com.jewellerypos.api.repository.ProductRepository;
 import com.jewellerypos.api.repository.TagRepository;
 import com.jewellerypos.api.response.StatusResponse;
+import com.jewellerypos.api.response.TagResponse;
 import com.jewellerypos.api.service.TagService;
 
 @Transactional
@@ -39,8 +40,8 @@ public class TagServiceImpl implements TagService{
 	}
 
 	@Override
-	public StatusResponse createTag(Tag tagReq) {
-		StatusResponse response = new StatusResponse();
+	public TagResponse createTag(Tag tagReq) {
+	    TagResponse response = new TagResponse();
 		response.setStatus(false);
 		String tagPrefix;
 		long tagSeqno;
@@ -56,7 +57,8 @@ public class TagServiceImpl implements TagService{
 		plusTag.setTagPlusDate(LocalDateTime.now());
 		Tag t =  tagRepository.save(plusTag);
 		if(t != null){
-			response.setIdentifier(t.getTagNo());
+		    response.setTagId(t.getTagId());
+			response.setTagNo(t.getTagNo());
 			response.setStatus(true);
 		}
 		return response;

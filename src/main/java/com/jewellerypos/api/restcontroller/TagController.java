@@ -23,6 +23,7 @@ import com.jewellerypos.api.model.Tag;
 import com.jewellerypos.api.request.PurchaseRequest;
 import com.jewellerypos.api.response.PurchaseResponse;
 import com.jewellerypos.api.response.StatusResponse;
+import com.jewellerypos.api.response.TagResponse;
 import com.jewellerypos.api.service.TagService;
 
 @RestController
@@ -44,7 +45,7 @@ public class TagController {
     @Path("/v1.0/tag")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public StatusResponse createTag(@Valid Tag tagReq ){
+    public TagResponse createTag(@Valid Tag tagReq ){
         return tagService.createTag(tagReq);
         
     }

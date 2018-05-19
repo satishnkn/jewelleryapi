@@ -49,7 +49,9 @@ public class Tag implements Serializable {
 	@Column(name = "TAG_ID")
 	private String tagId;
 			
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
 	@Column(name = "TAG_PLUS_DATE")
 	private LocalDateTime tagPlusDate;
 		
@@ -97,6 +99,9 @@ public class Tag implements Serializable {
 	@Column(name = "SALE_BILL_NO")
 	private String saleBillNo;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)  
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
 	@Column(name = "TAG_MINUS_DATE")
 	private LocalDateTime tagMinusDate;
 		

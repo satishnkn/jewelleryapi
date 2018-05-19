@@ -21,7 +21,7 @@ public interface PurchaseService {
 
 	public PagePurchaseResponse getAllPurchase(int page, int size);
 
-    public List<PurchasevsTagResponse> getPurchasevsTag(int page, int size);
+    public List<PurchasevsTagResponse> getPurchasevsTag(String startDate, String endDate, int page, int size);
 
 	public Purchase getPurchaseByPurchaseNo(long purchaseNo);
 

@@ -6,10 +6,11 @@ import org.springframework.data.domain.Page;
 
 import com.jewellerypos.api.model.Tag;
 import com.jewellerypos.api.response.StatusResponse;
+import com.jewellerypos.api.response.TagResponse;
 
 public interface TagService {
 
-	public StatusResponse createTag(Tag tagReq);
+	public TagResponse createTag(Tag tagReq);
 
 	public StatusResponse updateTag(String tagId, Tag tagReq);
 

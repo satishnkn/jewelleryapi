@@ -132,7 +132,6 @@ public class SaleServiceImpl implements SaleService {
 
 	@Override
 	public List<Sale> getAllSales(int page, int size) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

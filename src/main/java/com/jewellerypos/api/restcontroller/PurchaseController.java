@@ -99,11 +99,11 @@ public class PurchaseController {
 	
 	
 	@GET 
-    @Path("/v1.0/purchasevstag")
+    @Path("/v1.0/purchasevstag/{startDate}/{endDate}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public List<PurchasevsTagResponse> getPurchasevsTag(@QueryParam("page") int page,@QueryParam("size") int size){
-        return purchaseService.getPurchasevsTag(page,size);
+    public List<PurchasevsTagResponse> getPurchasevsTag(@PathParam("startDate") String startDate,@PathParam("endDate") String endDate, @QueryParam("page") int page,@QueryParam("size") int size){
+        return purchaseService.getPurchasevsTag(startDate,endDate,page,size);
         
     }
 	

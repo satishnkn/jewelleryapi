@@ -202,11 +202,11 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
     @Override
-    public List<PurchasevsTagResponse> getPurchasevsTag(int page, int size) {
+    public List<PurchasevsTagResponse> getPurchasevsTag(String startDate, String endDate,int page, int size) {
         
         Map<String, Object> record;
         System.out.println("test 12345wwwwww");
-        List purchasevstagList = customRepository.getPurchasevsTag(page, size);
+        List purchasevstagList = customRepository.getPurchasevsTag(startDate,endDate,page, size);
         System.out.println("test 12345");
         List<PurchasevsTagResponse> response = new ArrayList<>();
         for(Iterator itr = purchasevstagList.iterator(); itr.hasNext();) {
