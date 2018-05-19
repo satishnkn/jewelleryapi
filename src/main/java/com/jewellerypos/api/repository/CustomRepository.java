@@ -23,6 +23,7 @@ public class CustomRepository {
                 + " P.PURCHASE_NO,P.PURCHASE_BILL_NO,P.PURCHASA_DATE,P.DEALER_ID,P.PRODUCT_CODE,P.PIECE,P.GROSS_WEIGHT,P.NET_WEIGHT,P.LESS_WEIGHT,P.OTHER_CHARGE,P.BILL_REFNO";
                 //+ " ORDER BY P.PURCHASE_NO LIMIT "+size+" OFFSET "+page;
         System.out.println(sql);
+
         return jdbcTemplate.queryForList(sql);
     }
 
