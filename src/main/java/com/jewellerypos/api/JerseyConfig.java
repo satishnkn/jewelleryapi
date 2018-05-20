@@ -11,6 +11,7 @@ import com.jewellerypos.api.exceptionmapper.CustomValidationExceptionMapper;
 import com.jewellerypos.api.exceptionmapper.NotAuthorizedExceptionMapper;
 import com.jewellerypos.api.exceptionmapper.NotFoundExceptionMapper;
 import com.jewellerypos.api.filter.AuthenticationFilter;
+import com.jewellerypos.api.filter.CorsResponseFilter;
 import com.jewellerypos.api.model.ChitMember;
 import com.jewellerypos.api.restcontroller.ChitGroupController;
 import com.jewellerypos.api.restcontroller.ChitMemberController;
@@ -28,6 +29,7 @@ import com.jewellerypos.api.restcontroller.TagController;
 public class JerseyConfig extends ResourceConfig {
     
     public JerseyConfig() {
+    	register(CorsResponseFilter.class);
         register(MetalRateHistoryController.class);
         register(ProductController.class);
         register(DealerController.class);
