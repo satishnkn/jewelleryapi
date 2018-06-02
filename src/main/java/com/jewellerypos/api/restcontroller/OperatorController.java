@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +34,14 @@ import com.jewellerypos.api.service.OperatorService;
 import com.jewellerypos.api.util.PasscodeEncryptorUtil;
 import com.jewellerypos.api.util.Role;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.Authorization;
+
 @RestController
 @Path("/")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
+@Api(value = "Operator", produces = MediaType.APPLICATION_JSON , authorizations = {@Authorization(value="basicAuth")})
 public class OperatorController {
     private static final Logger LOGGER = LoggerFactory.getLogger(OperatorController.class);
     
@@ -63,6 +68,7 @@ public class OperatorController {
     @Path("/v1.0/operator/{operatorCode}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
+    @Secured({Role.ADMIN,Role.SUPERADMIN})
     public Operator updateOperator(@PathParam("operatorCode") long operatorCode,@Valid Operator operator ){
         return operatorService.updateOperator(operatorCode,operator);
         
@@ -73,6 +79,7 @@ public class OperatorController {
     @Path("/v1.0/operator")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
+    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public PageOperatorResponse getAllOperator(@QueryParam("page") int page,@QueryParam("size") int size){
         return operatorService.getAllOperator(page,size);
         
@@ -82,8 +89,9 @@ public class OperatorController {
     @Path("/v1.0/operator/{operatorCode}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    public Operator getOperatorByCode(@PathParam("productCode") long productCode){
-        return operatorService.getOperatorByCode(productCode);
+    @Secured({Role.ADMIN,Role.OPERATOR})
+    public Operator getOperatorByCode(@PathParam("operatorCode") long operatorCode){
+        return operatorService.getOperatorByCode(operatorCode);
         
     }
     
@@ -100,6 +108,7 @@ public class OperatorController {
     @Path("/v1.0/changepassword")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
+    @Secured({Role.ADMIN,Role.OPERATOR})
     public AuthStatusResponse passwordChange(@Valid PasswordChangeRequest req){
         return operatorService.passwordChange(req);
         
