@@ -61,7 +61,7 @@ public class JerseyConfig extends ResourceConfig {
         register(CustomValidationExceptionMapper.class);
         register(NotFoundExceptionMapper.class);
         register(NotAuthorizedExceptionMapper.class);
-        register(AuthenticationFilter.class);
+       // register(AuthenticationFilter.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
