@@ -45,7 +45,7 @@ public class ChitTranController {
     @Path("/v1.0/chittran")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public ChitTran createTransaction(@Valid ChitTran chitTran){
         return chitTranService.createTransaction(chitTran);
     }
@@ -54,7 +54,7 @@ public class ChitTranController {
     @Path("/v1.0/chittran/{tranNo}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public ChitTran updateTransaction(@PathParam("tranNo") long tranNo,@Valid ChitTran chitTran){
         return chitTranService.updateTransaction(tranNo,chitTran);
         
@@ -64,7 +64,7 @@ public class ChitTranController {
     @Path("/v1.0/chittran/{chitMemberSno}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public List<ChitTran> getTransactionByMember(@PathParam("chitMemberSno") long chitMemberSno){
         return chitTranService.getTransactionByMember(chitMemberSno);
         
@@ -74,7 +74,7 @@ public class ChitTranController {
     @Path("/v1.0/chittran")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public List<ChitTran> getAllTransaction(@QueryParam("page") int page,@QueryParam("size") int size){
         return chitTranService.getAllTransaction(page,size);
         
@@ -84,7 +84,7 @@ public class ChitTranController {
     @Path("/v1.0/chittran/tranNo")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public ChitTran getTransactionByTranNo(@PathParam("tranNo") long tranNo){
         return chitTranService.getTransactionByTranNo(tranNo);
         
@@ -94,7 +94,7 @@ public class ChitTranController {
     @Path("/v1.0/chittran/cancel/{tranNo}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public ChitTran updateTransaction(@PathParam("tranNo") long tranNo){
         return chitTranService.cancelTransaction(tranNo);
         

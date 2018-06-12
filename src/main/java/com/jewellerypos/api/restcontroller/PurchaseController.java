@@ -52,7 +52,7 @@ public class PurchaseController {
     @Path("/v1.0/purchase")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public PurchaseResponse createPurchase(@Valid PurchaseRequest purchaseReq ){
         return purchaseService.createPurchase(purchaseReq);
         
@@ -62,7 +62,7 @@ public class PurchaseController {
     @Path("/v1.0/purchase/{purchaseBillno}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.SUPERADMIN})
     public PurchaseResponse updatePurchase(@PathParam("purchaseBillno") long purchaseBillNo, @Valid PurchaseRequest purchaseReq ){
         return purchaseService.updatePurchase(purchaseBillNo,purchaseReq);
         
@@ -72,7 +72,7 @@ public class PurchaseController {
     @Path("/v1.0/purchase/cancel/{purchaseBillno}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.SUPERADMIN})
     public StatusResponse cancelPurchase(@PathParam("purchaseBillno") long purchaseBillNo ){
         return purchaseService.cancelPurchase(purchaseBillNo);
         
@@ -83,7 +83,7 @@ public class PurchaseController {
     @Path("/v1.0/purchasebill/{purchaseBillno}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public List<Purchase> getPurchaseByPurchaseBillNo(@PathParam("purchaseBillno") long purchaseBillNo ){
         return purchaseService.getPurchaseByPurchaseBillNo(purchaseBillNo);
         
@@ -93,7 +93,7 @@ public class PurchaseController {
     @Path("/v1.0/purchase/{purchaseNo}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public Purchase getPurchaseByPurchaseNo(@PathParam("purchaseNo") long purchaseNo ){
         return purchaseService.getPurchaseByPurchaseNo(purchaseNo);
         
@@ -104,7 +104,7 @@ public class PurchaseController {
     @Path("/v1.0/purchase")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public PagePurchaseResponse getAllPurchase(@QueryParam("page") int page,@QueryParam("size") int size){
         return purchaseService.getAllPurchase(page,size);
         
@@ -115,7 +115,7 @@ public class PurchaseController {
     @Path("/v1.0/purchasevstag/{startDate}/{endDate}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public List<PurchasevsTagResponse> getPurchasevsTag(@PathParam("startDate") String startDate,@PathParam("endDate") String endDate, @QueryParam("page") int page,@QueryParam("size") int size){
         return purchaseService.getPurchasevsTag(startDate,endDate,page,size);
         

@@ -56,7 +56,7 @@ public class OperatorController {
     @Path("/v1.0/operator")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public Operator createOperator(@Valid Operator operator,@Context HttpServletRequest httpservletRequest ){
         System.out.println("Reached the method");
         long creator = PasscodeEncryptorUtil.getCreatorId(httpservletRequest);
@@ -68,7 +68,7 @@ public class OperatorController {
     @Path("/v1.0/operator/{operatorCode}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public Operator updateOperator(@PathParam("operatorCode") long operatorCode,@Valid Operator operator ){
         return operatorService.updateOperator(operatorCode,operator);
         
@@ -79,7 +79,7 @@ public class OperatorController {
     @Path("/v1.0/operator")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public PageOperatorResponse getAllOperator(@QueryParam("page") int page,@QueryParam("size") int size){
         return operatorService.getAllOperator(page,size);
         
@@ -89,7 +89,7 @@ public class OperatorController {
     @Path("/v1.0/operator/{operatorCode}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR})
+    //@Secured({Role.ADMIN,Role.OPERATOR})
     public Operator getOperatorByCode(@PathParam("operatorCode") long operatorCode){
         return operatorService.getOperatorByCode(operatorCode);
         
@@ -108,7 +108,7 @@ public class OperatorController {
     @Path("/v1.0/changepassword")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR})
+    //@Secured({Role.ADMIN,Role.OPERATOR})
     public AuthStatusResponse passwordChange(@Valid PasswordChangeRequest req){
         return operatorService.passwordChange(req);
         

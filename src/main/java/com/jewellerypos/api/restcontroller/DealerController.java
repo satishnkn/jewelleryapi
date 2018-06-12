@@ -48,7 +48,7 @@ public class DealerController {
     @Path("/v1.0/dealer")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public Dealer createDealer(@Valid DealerRequest dealerReq ){
         return dealerService.createDealer(dealerReq);
         
@@ -58,7 +58,7 @@ public class DealerController {
     @Path("/v1.0/dealer/{dealerId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.SUPERADMIN})
     public Dealer updateDealer(@PathParam("dealerId") long dealerId, @Valid DealerRequest dealerReq ){
         return dealerService.updateDealer(dealerId,dealerReq);
     }
@@ -67,7 +67,7 @@ public class DealerController {
     @Path("/v1.0/dealer")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public PageDealerResponse getAllDealer(@QueryParam("page") int page,@QueryParam("size") int size){
         return dealerService.getAllDealer(page, size);
     }
@@ -76,7 +76,7 @@ public class DealerController {
     @Path("/v1.0/dealer/{dealerId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public Dealer getDealerById(@PathParam("dealerId") long dealerId){
         return dealerService.getDealerById(dealerId);
     }

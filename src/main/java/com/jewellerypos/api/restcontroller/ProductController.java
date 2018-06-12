@@ -51,7 +51,7 @@ public class ProductController {
     @Path("/v1.0/product")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public ProductRepsonse createProduct(@Valid ProductRequest proReq ){
         return productService.createProduct(proReq);
         
@@ -61,7 +61,7 @@ public class ProductController {
     @Path("/v1.0/product/{productCode}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public ProductRepsonse updateProduct(@PathParam("productCode") long productCode,@Valid ProductRequest proReq ){
         return productService.updateProduct(productCode,proReq);
         
@@ -71,7 +71,7 @@ public class ProductController {
     @Path("/v1.0/product")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public PageProductResposne getAllProduct(@QueryParam("page") int page,@QueryParam("size") int size){
         return productService.getAllProduct(page,size);
         
@@ -81,7 +81,7 @@ public class ProductController {
     @Path("/v1.0/product/{productCode}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public ProductRepsonse getProductByCode(@PathParam("productCode") long productCode){
         return productService.getProductByCode(productCode);
         

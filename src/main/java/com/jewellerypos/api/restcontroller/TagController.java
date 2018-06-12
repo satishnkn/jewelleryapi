@@ -52,7 +52,7 @@ public class TagController {
     @Path("/v1.0/tag")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public TagResponse createTag(@Valid Tag tagReq ){
         return tagService.createTag(tagReq);
         
@@ -62,7 +62,7 @@ public class TagController {
     @Path("/v1.0/tag/{tagId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.SUPERADMIN})
     public StatusResponse updateTag(@PathParam("tagId") String tagId, @Valid Tag tagReq ){
         return tagService.updateTag(tagId,tagReq);
         
@@ -72,7 +72,7 @@ public class TagController {
     @Path("/v1.0/tag")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
 	public Page<Tag> getAlltags(@QueryParam("page") int page,@QueryParam("size") int size){
 		return tagService.getAllTags(page,size);
 	}
@@ -81,7 +81,7 @@ public class TagController {
     @Path("/v1.0/tag/{tagId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
 	public Tag getTagById(@PathParam("tagId") String tagId){
 		return tagService.getTagById(tagId);
 	}

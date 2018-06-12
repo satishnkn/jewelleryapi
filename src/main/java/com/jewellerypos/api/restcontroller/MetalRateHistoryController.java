@@ -45,7 +45,7 @@ public class MetalRateHistoryController {
     @Path("/v1.0/metalrate")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public MetalRateHistory createRateHistory(@Valid MetalRateHistoryRequest metalRateRequest){
         return metalRateHistoryService.createHistory(metalRateRequest);
         
@@ -55,7 +55,7 @@ public class MetalRateHistoryController {
     @Path("/v1.0/metalrate")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public List<Metal> getAllMetalRate(){
     	return metalRateHistoryService.getAllMetalRate();
     }
@@ -65,7 +65,7 @@ public class MetalRateHistoryController {
     @Path("/v1.0/metal")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public Metal createMetal(@Valid Metal metal){
     	return metalRateHistoryService.createMetal(metal);
     }

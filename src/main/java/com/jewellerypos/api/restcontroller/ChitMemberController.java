@@ -45,7 +45,7 @@ public class ChitMemberController {
     @Path("/v1.0/chitmember")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public ChitMember createChitMember(@Valid ChitMember chitMember){
         return chitMemberService.createMember(chitMember);
         
@@ -55,7 +55,7 @@ public class ChitMemberController {
     @Path("/v1.0/chitmember/{chitmemberId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public ChitMember updateChitMember(@PathParam("chitmemberId") long chitmemberId, @Valid ChitMember chitMember){
         return chitMemberService.updateMember(chitmemberId,chitMember);
         
@@ -65,7 +65,7 @@ public class ChitMemberController {
     @Path("/v1.0/chitmember")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public PageChitMemberResponse getAllChitMember(@QueryParam("page") int page,@QueryParam("size") int size){
         return chitMemberService.getAllChitMember(page,size);
     }
@@ -74,7 +74,7 @@ public class ChitMemberController {
     @Path("/v1.0/chitmember/{chitmemberId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+    //@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public ChitMember getChitMemberById(@PathParam("chitmemberId") long chitmemberId){
         return chitMemberService.getChitMemberById(chitmemberId);
         

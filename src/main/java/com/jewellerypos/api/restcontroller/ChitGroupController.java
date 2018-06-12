@@ -45,7 +45,7 @@ public class ChitGroupController {
     @Path("/v1.0/chitgroup")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
 	public ChitGroup createChitGroup(@Valid ChitGroup chitGroup){
 	    return chitGroupService.createChitGroup(chitGroup);
 	}
@@ -54,7 +54,7 @@ public class ChitGroupController {
     @Path("/v1.0/chitgroup/{chitgroupId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.SUPERADMIN})
 	public ChitGroup updateChitGroup(@PathParam("chitgroupId") long chitgroupId,@Valid ChitGroup chitGroup) {
 	    return chitGroupService.updateChitGroup(chitgroupId,chitGroup);
 	}
@@ -63,7 +63,7 @@ public class ChitGroupController {
     @Path("/v1.0/chitgroup")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
 	public List<ChitGroup> getAllChitGroups(@QueryParam("status") String status){
         return chitGroupService.getAllChitGroup(status);
 	    
@@ -73,7 +73,7 @@ public class ChitGroupController {
     @Path("/v1.0/chitgroup/{chitgroupId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
 	public ChitGroup getChitGroupByChitGroupId(@PathParam("chitgroupId") long chitgroupId){
         return chitGroupService.getChitGroupByChitGroupId(chitgroupId);
     }

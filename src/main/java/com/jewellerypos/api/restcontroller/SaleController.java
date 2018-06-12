@@ -50,7 +50,7 @@ public class SaleController {
     @Path("/v1.0/sale")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public SaleResponse createSales(@Valid SaleRequest saleReq ){
         return saleService.createSales(saleReq);
     }
@@ -60,7 +60,7 @@ public class SaleController {
     @Path("/v1.0/sale/cancel/{saleBillno}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.SUPERADMIN})
     public StatusResponse cancelPurchase(@PathParam("saleBillno") long saleBillNo ){
         return saleService.cancelSales(saleBillNo);
         
@@ -70,7 +70,7 @@ public class SaleController {
     @Path("/v1.0/sale/{saleBillno}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public List<Sale> getPurchaseByPurchaseBillNo(@PathParam("saleBillno") long saleBillNo ){
         return saleService.getSalesBySaleBillNo(saleBillNo);
         
@@ -80,7 +80,7 @@ public class SaleController {
     @Path("/v1.0/sale")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-	@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
     public List<Sale> getPurchaseByPurchaseBillNo(@QueryParam("page") int page,@QueryParam("size") int size ){
         return saleService.getAllSales(page,size);
         
