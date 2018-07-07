@@ -19,6 +19,7 @@ import com.jewellerypos.api.model.ChitMember;
 import com.jewellerypos.api.restcontroller.ChitGroupController;
 import com.jewellerypos.api.restcontroller.ChitMemberController;
 import com.jewellerypos.api.restcontroller.ChitTranController;
+import com.jewellerypos.api.restcontroller.CustomerController;
 import com.jewellerypos.api.restcontroller.DealerController;
 import com.jewellerypos.api.restcontroller.MetalRateHistoryController;
 import com.jewellerypos.api.restcontroller.MyApiDefinition;
@@ -57,8 +58,10 @@ public class JerseyConfig extends ResourceConfig {
         register(ChitTranController.class);
         register(OperatorController.class);
         register(SaleController.class);
+        register(CustomerController.class);
         register(CustomExceptionMapper.class);
         register(CustomValidationExceptionMapper.class);
+        
         register(NotFoundExceptionMapper.class);
         register(NotAuthorizedExceptionMapper.class);
        // register(AuthenticationFilter.class);

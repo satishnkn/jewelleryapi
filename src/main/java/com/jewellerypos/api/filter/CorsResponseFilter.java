@@ -28,6 +28,7 @@ public class CorsResponseFilter  implements ContainerResponseFilter,ContainerReq
 			
 			if("OPTIONS".equals(requestContext.getMethod()))
 			{	
+				headers.putSingle("Content-Type", "application/json;charset=UTF-8");
 				System.out.println("enter into option method");
 				if(!headers.containsKey("Access-Control-Allow-Credentials"))
 					headers.add("Access-Control-Allow-Credentials", "true");			
