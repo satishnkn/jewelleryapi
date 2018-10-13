@@ -8,7 +8,7 @@ import com.jewellerypos.api.response.PageOperatorResponse;
 
 public interface OperatorService {
 
-    public Operator createOperator(Operator operator, long creator);
+    public Operator createOperator(Operator operator);
 
     public Operator updateOperator(long operatorCode, Operator operator);
 

@@ -43,7 +43,7 @@ public class OperatorServiceImpl implements OperatorService{
     }
 
     @Override
-    public Operator createOperator(Operator operator,long creator) {
+    public Operator createOperator(Operator operator) {
         Operator response = new Operator();
         Operator existOpertaor = operatorRepository.findByLoginId(operator.getLoginId()); 
         if(existOpertaor != null)
@@ -52,8 +52,8 @@ public class OperatorServiceImpl implements OperatorService{
         operator.setUpdatedOn(LocalDateTime.now());
         operator.setLoginPassword(PasscodeEncryptorUtil.encryptPasscode(operator.getLoginPassword()));
         operator.getOperatorDevice().get(0).setLastLoggedIn(LocalDateTime.now());
-        operator.setCreatedBy(creator);
-        operator.setUpdatedBy(creator);
+        operator.setCreatedBy(1);
+        operator.setUpdatedBy(1);
         response = operatorRepository.save(operator);
         return response;
     }

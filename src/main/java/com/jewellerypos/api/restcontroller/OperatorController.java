@@ -59,8 +59,9 @@ public class OperatorController {
     //@Secured({Role.ADMIN,Role.SUPERADMIN})
     public Operator createOperator(@Valid Operator operator,@Context HttpServletRequest httpservletRequest ){
         System.out.println("Reached the method");
-        long creator = PasscodeEncryptorUtil.getCreatorId(httpservletRequest);
-        return operatorService.createOperator(operator,creator);
+        //long creator = PasscodeEncryptorUtil.getCreatorId(httpservletRequest);
+        //return operatorService.createOperator(operator,creator);
+        return operatorService.createOperator(operator);
         
     }
     
