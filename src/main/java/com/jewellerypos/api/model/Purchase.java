@@ -98,9 +98,9 @@ public class Purchase implements Serializable{
 	@Column(name = "PURCHASE_TYPE")
 	private String purchaseType;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	/*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "PURCHASE_NO", nullable = false)
-	private Set<PurchaseAddon> purchaseAddon;
+	private Set<PurchaseAddon> purchaseAddon;*/
 	
 	@Column(name = "BILL_REFNO")
 	private String billRefNo;

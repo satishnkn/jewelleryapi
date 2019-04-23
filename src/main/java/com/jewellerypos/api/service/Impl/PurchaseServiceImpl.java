@@ -63,17 +63,46 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public PurchaseResponse createPurchase(PurchaseRequest purchaseReq) {
+	public Purchase createPurchase(PurchaseRequest purchase) {
 		
-		PurchaseResponse response = new PurchaseResponse();
+		//PurchaseResponse response = new PurchaseResponse();
 		
-		List<Purchase> purchaseresp = new ArrayList<>();
+		//List<Purchase> purchaseresp = new ArrayList<>();
+		
+		
 		Control cntrl = controlRepository.findOne(1l);
 		 long purchaseBillno = cntrl.getPurchaseBillno();
 		 cntrl.setPurchaseBillno(purchaseBillno+1);
 		 controlRepository.save(cntrl);
 		LocalDateTime purchaseDate = LocalDateTime.now();
-		int i =0;
+		
+		Purchase p = new Purchase();
+		p.setDealerId(purchase.getDealerId());
+		p.setPurchaseBillNo(purchaseBillno);
+		p.setPurchaseDate(purchaseDate);
+		p.setPiece(purchase.getPiece());
+		p.setGrossWeight(purchase.getGrossWeight());
+		p.setNetWeight(purchase.getNetWeight());
+		p.setLessWeight(purchase.getLessWeight());
+		p.setGrossOrNet(purchase.getGrossOrNet());
+		p.setPurchaseTaxPercent(purchase.getPurchaseTaxPercent());
+		p.setOtherCharge(purchase.getOtherCharge());
+		p.setPurchaseType(purchase.getPurchaseType());
+		p.setBillRefNo(purchase.getBillRefNo());
+		p.setBillRefDate(purchase.getBillRefDate());
+		p.setBillStatus(purchase.getBillStatus());
+		p.setDescription(purchase.getDescription());
+		p.setTotalDiscount(purchase.getTotalDiscount());
+		p.setTotalRoundOf(purchase.getTotalRoundOf());
+		p.setTotalAmount(purchase.getTotalAmount());
+		p.setOperatorCode(1);
+		p.setCreatedOn(LocalDateTime.now());
+		p.setUpdatedOn(LocalDateTime.now());
+		Purchase savedPurchase = purchaseRepository.save(p);
+		
+		return savedPurchase;
+		
+		/*int i =0;
 		for(PurchaseListRequest purchase : purchaseReq.getPurchaseList()){
 			i++;
 			Purchase p = new Purchase();
@@ -115,21 +144,21 @@ public class PurchaseServiceImpl implements PurchaseService {
 			response.setPurchaseList(savedPurchase);
 			response.setPurchaseBillno(purchaseBillno);
 			response.setPurchaseBillDate(purchaseDate);
-		return response;
+		return response;*/
 	}
 
 	@Override
-	public PurchaseResponse updatePurchase(long purchaseBillNo, PurchaseRequest purchaseReq) {
+	public Purchase updatePurchase(long purchaseBillNo, PurchaseRequest purchaseReq) {
 		List<Purchase> exist = purchaseRepository.findByPurchaseBillNo(purchaseBillNo);
 		if(exist.isEmpty())
 			throw new PurchaseNotFoundException(ErrorScenario.PURCHASE_NOT_FOUND,String.valueOf(purchaseBillNo));
 		if(exist.get(0).getBillStatus().equals("CANCEL"))
 			throw new BillAlreadyCancelledException(ErrorScenario.BILL_ALREADY_CANCELED,"Purchase BillNo : "+purchaseBillNo);
-		PurchaseResponse response = createPurchase(purchaseReq);
+		Purchase response = createPurchase(purchaseReq);
 		List<Purchase> cancelBill = new ArrayList<>();
 		for(Purchase exp : exist){
-			exp.setBillRefNo("Edit - "+String.valueOf(response.getPurchaseBillno()));
-			exp.setBillRefDate(response.getPurchaseBillDate());
+			exp.setBillRefNo("Edit - "+String.valueOf(response.getPurchaseBillNo()));
+			exp.setBillRefDate(response.getPurchaseDate());
 			exp.setBillStatus("CANCEL");
 			exp.setUpdatedOn(LocalDateTime.now());
 			cancelBill.add(exp);

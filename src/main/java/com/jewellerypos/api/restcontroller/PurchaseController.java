@@ -53,7 +53,7 @@ public class PurchaseController {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
 	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
-    public PurchaseResponse createPurchase(@Valid PurchaseRequest purchaseReq ){
+    public Purchase createPurchase(@Valid PurchaseRequest purchaseReq ){
         return purchaseService.createPurchase(purchaseReq);
         
     }
@@ -63,7 +63,7 @@ public class PurchaseController {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
 	//@Secured({Role.ADMIN,Role.SUPERADMIN})
-    public PurchaseResponse updatePurchase(@PathParam("purchaseBillno") long purchaseBillNo, @Valid PurchaseRequest purchaseReq ){
+    public Purchase updatePurchase(@PathParam("purchaseBillno") long purchaseBillNo, @Valid PurchaseRequest purchaseReq ){
         return purchaseService.updatePurchase(purchaseBillNo,purchaseReq);
         
     }

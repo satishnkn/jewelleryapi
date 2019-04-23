@@ -22,8 +22,34 @@ public class PurchaseRequest {
 	
 	private long dealerId;
 	
-	private List<PurchaseListRequest> purchaseList;
+	//private List<PurchaseListRequest> purchaseList;
 	
+	private int piece;
+	
+	private double grossWeight;
+	
+	private double netWeight;
+	
+	private double lessWeight;
+	
+	//private double rate;
+	
+	//private double wastage;
+	
+	//private double makingCharge;
+	
+	private String grossOrNet;
+	
+	private double purchaseTaxPercent;
+	
+	//private double discount;
+	
+	//private double roundOfAmount;
+	
+	//private double amount;
+	 
+	private String purchaseType;
+		
 	private String description;
 	
 	private String billRefNo;
@@ -38,6 +64,8 @@ public class PurchaseRequest {
 	private double totalDiscount;
 	
 	private double totalRoundOf;
+	
+	private double otherCharge;
 	
 	private double totalAmount;
 	

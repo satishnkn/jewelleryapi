@@ -11,9 +11,9 @@ import com.jewellerypos.api.response.StatusResponse;
 
 public interface PurchaseService {
 
-	public PurchaseResponse createPurchase(PurchaseRequest purchaseReq);
+	public Purchase createPurchase(PurchaseRequest purchaseReq);
 
-	public PurchaseResponse updatePurchase(long purchaseBillNo, PurchaseRequest purchaseReq);
+	public Purchase updatePurchase(long purchaseBillNo, PurchaseRequest purchaseReq);
 
 	public StatusResponse cancelPurchase(long purchaseBillNo);
 
