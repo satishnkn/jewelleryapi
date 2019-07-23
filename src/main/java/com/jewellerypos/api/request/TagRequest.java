@@ -2,19 +2,22 @@ package com.jewellerypos.api.request;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import com.jewellerypos.api.model.SaleAddon;
+import com.jewellerypos.api.model.TagAddon;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SaleListRequest {
-	
-	private String tagId;
-	
+public class TagRequest {
+			
 	@NotNull
 	private long productCode;
 	
@@ -26,30 +29,23 @@ public class SaleListRequest {
 	
 	private double lessWeight;
 	
-	private double rate;
+	private double purchaseRate;
+	
+	private long purchaseNo;
 	
 	private double wastage;
-	
-	private double wastageWeight;
 	
 	private double makingCharge;
 	
 	private String grossOrNet;
 	
-	private double saleTaxPercent;
-	
-	private double saleTaxAmount;
-	
 	private double discount;
-	
-	private double roundOfAmount;
-	
+		
 	private double otherCharge;
 	
-	private double amount;
-	 
-	private String saleType;
+	private Set<TagAddon> tagAddon;
 	
-	private Set<SaleAddon> saleAddon;
+    private long operatorCode;   
+    
 
 }

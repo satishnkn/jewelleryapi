@@ -124,6 +124,9 @@ public class Sale implements Serializable {
 	
 	 @Column(name = "OPERATOR_CODE")
     private long operatorCode;
+	 
+	 @Column(name = "SALES_FORMULA")
+	 private int salesFormula;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)  

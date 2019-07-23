@@ -27,6 +27,7 @@ import com.jewellerypos.api.restcontroller.OperatorController;
 import com.jewellerypos.api.restcontroller.ProductController;
 import com.jewellerypos.api.restcontroller.PurchaseController;
 import com.jewellerypos.api.restcontroller.SaleController;
+import com.jewellerypos.api.restcontroller.SalesFormulaController;
 import com.jewellerypos.api.restcontroller.TagController;
 
 import io.swagger.jaxrs.config.BeanConfig;
@@ -61,6 +62,7 @@ public class JerseyConfig extends ResourceConfig {
         register(CustomerController.class);
         register(CustomExceptionMapper.class);
         register(CustomValidationExceptionMapper.class);
+        register(SalesFormulaController.class);
         
         register(NotFoundExceptionMapper.class);
         register(NotAuthorizedExceptionMapper.class);

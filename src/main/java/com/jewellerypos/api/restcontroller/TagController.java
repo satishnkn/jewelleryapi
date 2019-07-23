@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jewellerypos.api.annotation.Secured;
 import com.jewellerypos.api.model.Tag;
 import com.jewellerypos.api.request.PurchaseRequest;
+import com.jewellerypos.api.request.SaleListRequest;
+import com.jewellerypos.api.request.TagRequest;
 import com.jewellerypos.api.response.PurchaseResponse;
 import com.jewellerypos.api.response.StatusResponse;
 import com.jewellerypos.api.response.TagResponse;
@@ -53,7 +55,7 @@ public class TagController {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
 	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
-    public TagResponse createTag(@Valid Tag tagReq ){
+    public TagResponse createTag(@Valid TagRequest tagReq ){
         return tagService.createTag(tagReq);
         
     }
@@ -63,7 +65,7 @@ public class TagController {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
 	//@Secured({Role.ADMIN,Role.SUPERADMIN})
-    public StatusResponse updateTag(@PathParam("tagId") String tagId, @Valid Tag tagReq ){
+    public StatusResponse updateTag(@PathParam("tagId") String tagId, @Valid TagRequest tagReq ){
         return tagService.updateTag(tagId,tagReq);
         
     }
@@ -84,6 +86,16 @@ public class TagController {
 	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
 	public Tag getTagById(@PathParam("tagId") String tagId){
 		return tagService.getTagById(tagId);
+	}
+	
+	@PUT
+    @Path("/v1.0/calculate/{formulaId}")
+    @Consumes({ "application/json" })
+    @Produces({ "application/json" })
+	//@Secured({Role.ADMIN,Role.OPERATOR,Role.SUPERADMIN})
+	public SaleListRequest doSalecalculation(@Valid Tag tag,
+			@PathParam("formulaId") long formulaId){
+		return tagService.doSaleCalculation(tag,formulaId);
 	}
 	
 	

@@ -80,6 +80,9 @@ public class Tag implements Serializable {
 	@Column(name = "WASTAGE")
 	private double wastage;
 	
+	@Column(name = "WASTAGE_WEIGHT")
+	private double wastageWeight;
+	
 	@Column(name = "MAKING_CHARGE")
 	private double makingCharge;
 	
